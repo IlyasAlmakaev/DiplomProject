@@ -284,24 +284,6 @@
     localNotification.soundName = UILocalNotificationDefaultSoundName;
     localNotification.timeZone = [NSTimeZone defaultTimeZone];
 
-    if ([repeatNotify isEqual: notifyViewC.notRepeat])
-        // REVIEW Опять же использовать переменную,
-        // REVIEW никак не связанную с отображением.
-        // ANSWER Исправил.
-        localNotification.repeatInterval = 0;
-    
-    else if ([repeatNotify isEqual: notifyViewC.everyMinute])
-        localNotification.repeatInterval = NSCalendarUnitMinute;
-
-    else if ([repeatNotify isEqual: notifyViewC.everyHour])
-        localNotification.repeatInterval = NSCalendarUnitHour;
-    
-    else if ([repeatNotify isEqual: notifyViewC.everyDay])
-        localNotification.repeatInterval = NSCalendarUnitDay;
-
-    else if ([repeatNotify isEqual: notifyViewC.everyWeek])
-        localNotification.repeatInterval = NSCalendarUnitWeekday;
-
     [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
 }
 

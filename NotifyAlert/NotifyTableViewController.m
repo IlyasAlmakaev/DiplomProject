@@ -131,7 +131,7 @@
     {
         // Delete local notification
         NSDate *notificationDate = [[self.notifications objectAtIndex:indexPath.row] valueForKey:@"date"];
-        NSString *notificationName = [[self.notifications objectAtIndex:indexPath.row] valueForKey:@"name"];
+        NSString *notificationName = [[self.notifications objectAtIndex:indexPath.row] valueForKey:@"descript"];
         
         [self.appD deleteNotification:notificationDate name:notificationName];
         // REVIEW Ни в коем случае нельзя НЕЯВНО использовать Application.

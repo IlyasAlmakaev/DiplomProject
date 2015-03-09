@@ -2,7 +2,7 @@
 //  NotifyData.h
 //  NotifyAlert
 //
-//  Created by intent on 29/01/15.
+//  Created by intent on 10/03/15.
 //  Copyright (c) 2015 intent. All rights reserved.
 //
 
@@ -12,13 +12,9 @@
 
 @interface NotifyData : NSManagedObject
 
-@property (nonatomic) NSTimeInterval date;
-@property (nonatomic, strong) NSString *name;
-// REVIEW Зачем лишний пробел после *?
-// ANSWER Убрал.
-@property (nonatomic, strong) NSString *repeat;
-// REVIEW Почему retain, а не strong? В чём разница между retain и strong?
-// ANSWER Заменил на strong. При создании NSManagedObject автоматически по умолчанию создает retain.
-// ANSWER Strong применяется в режиме ARC (автоматический подсчет ссылок).
-// ANSWER Retain используется когда память управляется вручную.
+@property (nonatomic, retain) NSDate * date;
+@property (nonatomic, retain) NSString * descript;
+@property (nonatomic, retain) NSString * worker;
+@property (nonatomic, retain) NSString * material;
+
 @end

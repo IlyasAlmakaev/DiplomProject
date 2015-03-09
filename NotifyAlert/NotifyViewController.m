@@ -54,21 +54,15 @@
         self.materialFQ = NSLocalizedString(@"MaterialField_PlaceHolderHide", nil);
         self.materialF = NSLocalizedString(@"MaterialField_PlaceHolder", nil);
         self.dateF = NSLocalizedString(@"DateField_PlaceHolder", nil);
-        self.repeatF = NSLocalizedString(@"RepeatField_PlaceHolder", nil);
-        self.notRepeat = NSLocalizedString(@"RepeatOption_DoNotRepeat", nil);
-        self.everyMinute = NSLocalizedString(@"RepeatOption_EveryMinute", nil);
-        self.everyHour = NSLocalizedString(@"RepeatOption_EveryHour", nil);
-        self.everyDay = NSLocalizedString(@"RepeatOption_EveryDay", nil);
-        self.everyWeek = NSLocalizedString(@"RepeatOption_EveryWeek", nil);
         self.nilString = @"";
         
         self.repeatOptions = [[NSMutableArray alloc] init];
         // REVIEW Переименовать в repeatOptions. Какой смысл называть массивом массив?
-        [self.repeatOptions addObject:self.notRepeat];
+     /*   [self.repeatOptions addObject:self.notRepeat];
         [self.repeatOptions addObject:self.everyMinute];
         [self.repeatOptions addObject:self.everyHour];
         [self.repeatOptions addObject:self.everyDay];
-        [self.repeatOptions addObject:self.everyWeek];
+        [self.repeatOptions addObject:self.everyWeek];*/
         
     }
     return self;
@@ -117,17 +111,17 @@
         // ANSWER Исправил.
         indicator = YES;
         
-        [self.nameField setText:[self.notify valueForKey:@"name"]];
+        [self.nameField setText:[self.notify valueForKey:@"descript"]];
         [self dateFormatter:[self.notify valueForKey:@"date"]];
         
-        if ([self.notify valueForKey:@"date"] != nil && [self.notify valueForKey:@"repeat"] != nil)
+        if ([self.notify valueForKey:@"date"] != nil && [self.notify valueForKey:@"worker"] != nil)
         [self.datePickerView setDate:[self.notify valueForKey:@"date"]];
         
         self.notifyDate = [self.notify valueForKey:@"date"];
-        [self.repeatField setText:[self.notify valueForKey:@"repeat"]];
+        [self.repeatField setText:[self.notify valueForKey:@"worker"]];
         self.repeatField.placeholder = nil;
         
-        if ([self.notify valueForKey:@"date"] == nil && [self.notify valueForKey:@"repeat"] == nil)
+        if ([self.notify valueForKey:@"date"] == nil && [self.notify valueForKey:@"worker"] == nil)
         {
             // REVIEW Скобочка уехала.
             // ANSWER Исправил.
@@ -226,7 +220,7 @@
     
     if (textField == self.repeatField)
     {
-        if ([self.repeatField.text isEqual: self.notRepeat] || self.repeatField.placeholder == [self.repeatOptions objectAtIndex:0])
+ /*       if ([self.repeatField.text isEqual: self.notRepeat] || self.repeatField.placeholder == [self.repeatOptions objectAtIndex:0])
         {
             self.repeatField.placeholder = nil;
             self.repeatField.text = self.notRepeat;
@@ -242,7 +236,7 @@
             [self.pickerView selectRow:3 inComponent:0 animated:NO];
         
         else if ([self.repeatField.text isEqual: self.everyWeek])
-            [self.pickerView selectRow:4 inComponent:0 animated:NO];
+            [self.pickerView selectRow:4 inComponent:0 animated:NO];*/
         
         // REVIEW Никогда нельзя сравнивать с конечным локализованным значением
         // REVIEW Поменять на сравнение с внутренней переменной, никак
@@ -313,22 +307,22 @@
             if (self.notify && self.edit == YES)
             {
                 NSDate *notificationDate = [self.notify valueForKey:@"date"];
-                NSString *notificationName = [self.notify valueForKey:@"name"];
+                NSString *notificationName = [self.notify valueForKey:@"descript"];
                 
                 [self.appD deleteNotification:notificationDate name:notificationName];
                 // REVIEW Опять же.
                 // ANSWER Исправил.
-                [self.notify setValue:self.nameField.text forKey:@"name"];
+                [self.notify setValue:self.nameField.text forKey:@"descript"];
                 [self.notify setValue:self.notifyDate forKey:@"date"];
                 
                 if ([self.repeatField.text isEqual:self.nilString])
                     // REVIEW Опять же использовать внутреннюю переменную,
                     // REVIEW никак не связанную с отображением.
                     // ANSWER Исправил.
-                    [self.notify setValue:self.repeatField.placeholder forKey:@"repeat"];
+                    [self.notify setValue:self.repeatField.placeholder forKey:@"worker"];
                 
                 else
-                    [self.notify setValue:self.repeatField.text forKey:@"repeat"];
+                    [self.notify setValue:self.repeatField.text forKey:@"worker"];
             }
             // Add new notification
             else
@@ -336,16 +330,16 @@
                 NotifyData * notifyAdd = [NSEntityDescription insertNewObjectForEntityForName:@"NotifyData"
                                                                        inManagedObjectContext:self.appD.managedOC];
                 
-                notifyAdd.name = self.nameField.text;
+                notifyAdd.descript = self.nameField.text;
                 [notifyAdd setValue:self.notifyDate forKey:@"date"];
                 
                 if ([self.repeatField.text isEqual:self.nilString])
                     // REVIEW Опять же...
                     // ANSWER Исправил
-                    notifyAdd.repeat = self.repeatField.placeholder;
+                    notifyAdd.worker = self.repeatField.placeholder;
                 
                 else
-                    notifyAdd.repeat = self.repeatField.text;
+                    notifyAdd.worker = self.repeatField.text;
             }
             
             NSError *error = nil;
@@ -370,13 +364,13 @@
             // Edit notification
             if (self.notify && self.edit == YES)
             {
-                [self.notify setValue:self.nameField.text forKey:@"name"];
+                [self.notify setValue:self.nameField.text forKey:@"descript"];
                 [self.notify setValue:nil forKey:@"date"];
-                [self.notify setValue:nil forKey:@"repeat"];
+                [self.notify setValue:nil forKey:@"worker"];
                 
                 // Delete local notification
                 NSDate *notificationDate = [self.notify valueForKey:@"date"];
-                NSString *notificationName = [self.notify valueForKey:@"name"];
+                NSString *notificationName = [self.notify valueForKey:@"descript"];
                 
                 [self.appD deleteNotification:notificationDate name:notificationName];
                 // REVIEW Опять же.
@@ -391,7 +385,7 @@
             {
                 NotifyData *notifyAdd = [NSEntityDescription insertNewObjectForEntityForName:@"NotifyData"
                                                                       inManagedObjectContext:self.appD.managedOC];
-                notifyAdd.name = self.nameField.text;
+                notifyAdd.descript = self.nameField.text;
                 
                 NSError *error = nil;
                 if (![self.appD.managedOC save:&error])

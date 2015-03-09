@@ -2,7 +2,7 @@
 //  NotifyData.m
 //  NotifyAlert
 //
-//  Created by intent on 29/01/15.
+//  Created by intent on 10/03/15.
 //  Copyright (c) 2015 intent. All rights reserved.
 //
 
@@ -12,8 +12,8 @@
 @implementation NotifyData
 
 @dynamic date;
-@dynamic name;
-@dynamic repeat;
-// REVIEW Зачем?
-// ANSWER Данные @dynamic поддерживаются во время выполнения (runtime) приложения
+@dynamic descript;
+@dynamic worker;
+@dynamic material;
+
 @end

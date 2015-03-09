@@ -17,7 +17,6 @@
 @property (strong) NSManagedObject *notify;
 @property (nonatomic) BOOL edit;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
-@property (strong, nonatomic) NSString *notRepeat, *everyMinute, *everyHour, *everyDay, *everyWeek;
 
 // REVIE Перенести все свойства, что можно, в файл реализации.
 // ANSWER Оставил публичные свойства.
