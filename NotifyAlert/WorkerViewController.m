@@ -1,18 +1,18 @@
 //
-//  MaterialViewController.m
+//  WorkerViewController.m
 //  NotifyAlert
 //
 //  Created by intent on 09/03/15.
 //  Copyright (c) 2015 intent. All rights reserved.
 //
 
-#import "MaterialViewController.h"
+#import "WorkerViewController.h"
 
-@interface MaterialViewController ()
+@interface WorkerViewController ()
 
 @end
 
-@implementation MaterialViewController
+@implementation WorkerViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -20,7 +20,7 @@
     
     if (self)
     {
-        self.navigationItem.title = NSLocalizedString(@"Material_Title", nil);
+        self.navigationItem.title = NSLocalizedString(@"Worker_Title", nil);
         
         self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
                                                                                               target:self

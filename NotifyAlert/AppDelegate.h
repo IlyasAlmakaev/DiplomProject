@@ -12,6 +12,7 @@
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
+@property (strong, nonatomic) UITabBarController    *tabController;
 
 @property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
@@ -29,6 +30,11 @@
 - (void)addObjectMaterial:(NSManagedObject *)managedObject
        controller:(UITableViewController *)tableVC
          testBool:(BOOL)boolValue;
+
+// Go to page Add/Edit worker
+- (void)addObjectWorker:(NSManagedObject *)managedObject
+               controller:(UITableViewController *)tableVC
+                 testBool:(BOOL)boolValue;
 
 - (void)dateField:(NSDate *)dateNotify
         nameField:(NSString *)nameNotify

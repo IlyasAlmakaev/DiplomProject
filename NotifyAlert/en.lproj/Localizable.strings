@@ -6,6 +6,7 @@
   Copyright (c) 2015 intent. All rights reserved.
 */
 
+// NotifyViewController
 "View_Title" = "New Remind";
 "NameField_PlaceHolder" = "Name for your remind";
 "RepeatOption_DoNotRepeat" = "Do not repeat";
@@ -18,9 +19,24 @@
 "View_Error" = "Error";
 "Toast_EmptyNameField" = "Enter name for your remind";
 
+// NotifyTableViewController
 "TableView_Title" = "Reminders";
 "TableView_Error" = "Can't Delete!";
 
+// AppDelegate
 "AppDelegate_Notification" = "Remind:";
+"TabBar_Work" = "Works";
+"TabBar_Material" = "Materials";
+"TabBar_Worker" = "Workers";
 
+// MaterialViewController
+"Material_Title" = "Materials";
+
+// MaterialTableViewController
 "MaterialTableView_Title" = "Materials";
+
+// WorkerViewController
+"Worker_Title" = "Workers";
+
+// WorkerTableViewController
+"WorkerTableView_Title" = "Workers";

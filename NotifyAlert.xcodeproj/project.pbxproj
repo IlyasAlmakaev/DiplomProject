@@ -16,6 +16,10 @@
 		11A2C3941A7AFFD600061625 /* NotifyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 11A2C3921A7AFFD600061625 /* NotifyViewController.xib */; };
 		11A2C3981A7B000B00061625 /* NotifyTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 11A2C3961A7B000B00061625 /* NotifyTableViewController.m */; };
 		11A2C3991A7B000B00061625 /* NotifyTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 11A2C3971A7B000B00061625 /* NotifyTableViewController.xib */; };
+		11C89D961AADDFC900C258F3 /* WorkerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 11C89D941AADDFC900C258F3 /* WorkerViewController.m */; };
+		11C89D971AADDFC900C258F3 /* WorkerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 11C89D951AADDFC900C258F3 /* WorkerViewController.xib */; };
+		11C89D9B1AADE05200C258F3 /* WorkerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 11C89D991AADE05200C258F3 /* WorkerTableViewController.m */; };
+		11C89D9C1AADE05200C258F3 /* WorkerTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 11C89D9A1AADE05200C258F3 /* WorkerTableViewController.xib */; };
 		11CE508E1AADAD1800647AC3 /* MaterialTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 11CE508C1AADAD1800647AC3 /* MaterialTableViewController.m */; };
 		11CE508F1AADAD1800647AC3 /* MaterialTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 11CE508D1AADAD1800647AC3 /* MaterialTableViewController.xib */; };
 		11CE50931AADB0C100647AC3 /* MaterialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 11CE50911AADB0C100647AC3 /* MaterialViewController.m */; };
@@ -56,6 +60,12 @@
 		11A2C3951A7B000B00061625 /* NotifyTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotifyTableViewController.h; sourceTree = "<group>"; };
 		11A2C3961A7B000B00061625 /* NotifyTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotifyTableViewController.m; sourceTree = "<group>"; };
 		11A2C3971A7B000B00061625 /* NotifyTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotifyTableViewController.xib; sourceTree = "<group>"; };
+		11C89D931AADDFC900C258F3 /* WorkerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkerViewController.h; sourceTree = "<group>"; };
+		11C89D941AADDFC900C258F3 /* WorkerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkerViewController.m; sourceTree = "<group>"; };
+		11C89D951AADDFC900C258F3 /* WorkerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WorkerViewController.xib; sourceTree = "<group>"; };
+		11C89D981AADE05200C258F3 /* WorkerTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkerTableViewController.h; sourceTree = "<group>"; };
+		11C89D991AADE05200C258F3 /* WorkerTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkerTableViewController.m; sourceTree = "<group>"; };
+		11C89D9A1AADE05200C258F3 /* WorkerTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WorkerTableViewController.xib; sourceTree = "<group>"; };
 		11CE508B1AADAD1800647AC3 /* MaterialTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MaterialTableViewController.h; sourceTree = "<group>"; };
 		11CE508C1AADAD1800647AC3 /* MaterialTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MaterialTableViewController.m; sourceTree = "<group>"; };
 		11CE508D1AADAD1800647AC3 /* MaterialTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MaterialTableViewController.xib; sourceTree = "<group>"; };
@@ -138,6 +148,12 @@
 				11CE50901AADB0C100647AC3 /* MaterialViewController.h */,
 				11CE50911AADB0C100647AC3 /* MaterialViewController.m */,
 				11CE50921AADB0C100647AC3 /* MaterialViewController.xib */,
+				11C89D981AADE05200C258F3 /* WorkerTableViewController.h */,
+				11C89D991AADE05200C258F3 /* WorkerTableViewController.m */,
+				11C89D9A1AADE05200C258F3 /* WorkerTableViewController.xib */,
+				11C89D931AADDFC900C258F3 /* WorkerViewController.h */,
+				11C89D941AADDFC900C258F3 /* WorkerViewController.m */,
+				11C89D951AADDFC900C258F3 /* WorkerViewController.xib */,
 				11D3DA201A7D313D00FE41D0 /* NotifyData.h */,
 				11D3DA211A7D313D00FE41D0 /* NotifyData.m */,
 				11D19F601A8EA64A00B27E2A /* DisableTextFieldEdit.h */,
@@ -278,8 +294,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				11C89D9C1AADE05200C258F3 /* WorkerTableViewController.xib in Resources */,
 				11D1BFE61A7BDAF3002C66B6 /* NotifyTableViewCell.xib in Resources */,
 				11CE50941AADB0C100647AC3 /* MaterialViewController.xib in Resources */,
+				11C89D971AADDFC900C258F3 /* WorkerViewController.xib in Resources */,
 				11A2C3991A7B000B00061625 /* NotifyTableViewController.xib in Resources */,
 				11CE508F1AADAD1800647AC3 /* MaterialTableViewController.xib in Resources */,
 				11A2C3781A7AFF7B00061625 /* Images.xcassets in Resources */,
@@ -342,9 +360,11 @@
 				11CE50931AADB0C100647AC3 /* MaterialViewController.m in Sources */,
 				11D19F621A8EA64A00B27E2A /* DisableTextFieldEdit.m in Sources */,
 				11A2C3981A7B000B00061625 /* NotifyTableViewController.m in Sources */,
+				11C89D9B1AADE05200C258F3 /* WorkerTableViewController.m in Sources */,
 				11D0D51E1AA8A9200019CA50 /* Common.m in Sources */,
 				11A2C36A1A7AFF7B00061625 /* main.m in Sources */,
 				11CE508E1AADAD1800647AC3 /* MaterialTableViewController.m in Sources */,
+				11C89D961AADDFC900C258F3 /* WorkerViewController.m in Sources */,
 				11A2C3701A7AFF7B00061625 /* NotifyAlert.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

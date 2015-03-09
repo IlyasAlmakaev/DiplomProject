@@ -6,6 +6,7 @@
   Copyright (c) 2015 intent. All rights reserved.
 */
 
+// NotifyViewController
 "View_Title" = "Новое напоминание";
 "NameField_PlaceHolder" = "Название вашего напоминания";
 "RepeatOption_DoNotRepeat" = "Не повторять";
@@ -18,9 +19,24 @@
 "View_Error" = "Ошибка";
 "Toast_EmptyNameField" = "Введите название напоминания";
 
+// NotifyTableViewController
 "TableView_Title" = "Напоминания";
 "TableView_Error" = "Не удалилось!";
 
+// AppDelegate
 "AppDelegate_Notification" = "Напоминание:";
+"TabBar_Work" = "Дела";
+"TabBar_Material" = "Материалы";
+"TabBar_Worker" = "Рабочие";
 
+// MaterialViewController
+"Material_Title" = "Материалы";
+
+// MaterialTableViewController
 "MaterialTableView_Title" = "Материалы";
+
+// WorkerViewController
+"Worker_Title" = "Исполнители";
+
+// WorkerTableViewController
+"WorkerTableView_Title" = "Исполнители";

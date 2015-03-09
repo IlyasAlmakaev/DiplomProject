@@ -1,21 +1,21 @@
 //
-//  MaterialTableViewController.m
+//  WorkerTableViewController.m
 //  NotifyAlert
 //
 //  Created by intent on 09/03/15.
 //  Copyright (c) 2015 intent. All rights reserved.
 //
 
-#import "MaterialTableViewController.h"
+#import "WorkerTableViewController.h"
 #import "AppDelegate.h"
 
-@interface MaterialTableViewController ()
+@interface WorkerTableViewController ()
 
 @property (strong, nonatomic) AppDelegate *appD;
 
 @end
 
-@implementation MaterialTableViewController
+@implementation WorkerTableViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -23,10 +23,10 @@
     
     if (self)
     {
-        self.navigationItem.title = NSLocalizedString(@"MaterialTableView_Title", nil);
+        self.navigationItem.title = NSLocalizedString(@"WorkerTableView_Title", nil);
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                                                                                target:self
-                                                                                               action:@selector(addMaterial)];
+                                                                                               action:@selector(addWorker)];
     }
     return self;
 }
@@ -53,9 +53,9 @@
     return 0;
 }
 
-- (void)addMaterial
+- (void)addWorker
 {
-    [self.appD addObjectMaterial:nil
+    [self.appD addObjectWorker:nil
                       controller:self
                         testBool:NO];
 }

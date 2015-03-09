@@ -9,6 +9,9 @@
 #import "AppDelegate.h"
 #import "NotifyTableViewController.h"
 #import "MaterialViewController.h"
+#import "MaterialTableViewController.h"
+#import "WorkerViewController.h"
+#import "WorkerTableViewController.h"
 
 @interface AppDelegate ()
 
@@ -108,12 +111,15 @@
 
         // REVIEW Зачем {, если ровно один вызов после условия?
         // ANSWER Убрал отображение badge.
+    
+    // initialisation work
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     NotifyTableViewController *notifyTableViewC = [[NotifyTableViewController alloc] init];
-
-    // REVIEW Почему бы сразу сюда не присвоить [[NotifyViewController alloc] init]?
-    // ANSWER Убрал присвоение из-за ненадобности.
+    
     UINavigationController *navigationC = [[UINavigationController alloc] initWithRootViewController:notifyTableViewC];
+    
+    navigationC.tabBarItem.title = NSLocalizedString(@"TabBar_Work", nil);
+    
     navigationC.navigationBar.barTintColor = [UIColor colorWithRed:52/255.
                                                              green:52/255.
                                                               blue:52/255.
@@ -121,8 +127,41 @@
     navigationC.navigationBar.barStyle = UIStatusBarStyleLightContent;
     navigationC.navigationBar.tintColor = [UIColor whiteColor];
     navigationC.navigationBar.translucent = NO;
-
-    self.window.rootViewController = navigationC;
+    
+    // initialisation material
+    MaterialTableViewController *materialTableViewC = [[MaterialTableViewController alloc] init];
+    
+    UINavigationController *materialNCT = [[UINavigationController alloc] initWithRootViewController:materialTableViewC];
+    
+    materialNCT.tabBarItem.title = NSLocalizedString(@"TabBar_Material", nil);
+    
+    materialNCT.navigationBar.barTintColor = [UIColor colorWithRed:52/255.
+                                                             green:52/255.
+                                                              blue:52/255.
+                                                             alpha:1];
+    materialNCT.navigationBar.barStyle = UIStatusBarStyleLightContent;
+    materialNCT.navigationBar.tintColor = [UIColor whiteColor];
+    materialNCT.navigationBar.translucent = NO;
+    
+    // initialisation worker
+    WorkerTableViewController *workerTableViewC = [[WorkerTableViewController alloc] init];
+    
+    UINavigationController *workerNTC = [[UINavigationController alloc] initWithRootViewController:workerTableViewC];
+    
+    workerNTC.tabBarItem.title = NSLocalizedString(@"TabBar_Worker", nil);
+    
+    workerNTC.navigationBar.barTintColor = [UIColor colorWithRed:52/255.
+                                                                      green:52/255.
+                                                                       blue:52/255.
+                                                                      alpha:1];
+    workerNTC.navigationBar.barStyle = UIStatusBarStyleLightContent;
+    workerNTC.navigationBar.tintColor = [UIColor whiteColor];
+    workerNTC.navigationBar.translucent = NO;
+    
+    self.tabController = [[UITabBarController alloc] init];
+    self.tabController.viewControllers = @[navigationC, materialNCT, workerNTC];
+    
+    self.window.rootViewController = self.tabController;
     [self.window makeKeyAndVisible];
     return YES;
 }
@@ -154,19 +193,41 @@
 {
     MaterialViewController *materialViewC = [[MaterialViewController alloc] init];
     
-    UINavigationController *navigationVC = [[UINavigationController alloc] initWithRootViewController:materialViewC];
-    navigationVC.navigationBar.barTintColor = [UIColor colorWithRed:52/255.
+    UINavigationController *navigationMVC = [[UINavigationController alloc] initWithRootViewController:materialViewC];
+    navigationMVC.navigationBar.barTintColor = [UIColor colorWithRed:52/255.
                                                               green:52/255.
                                                                blue:52/255.
                                                               alpha:1];
-    navigationVC.navigationBar.barStyle = UIStatusBarStyleLightContent;
-    navigationVC.navigationBar.tintColor = [UIColor whiteColor];
-    navigationVC.navigationBar.translucent = NO;
+    navigationMVC.navigationBar.barStyle = UIStatusBarStyleLightContent;
+    navigationMVC.navigationBar.tintColor = [UIColor whiteColor];
+    navigationMVC.navigationBar.translucent = NO;
     
 //    notifyViewC.edit = boolValue;
 //    notifyViewC.notify = managedObject;
     
-    [tableVC.navigationController presentViewController:navigationVC
+    [tableVC.navigationController presentViewController:navigationMVC
+                                               animated:YES
+                                             completion:nil];
+}
+
+// Go to page Add/Edit worker
+- (void)addObjectWorker:(NSManagedObject *)managedObject controller:(UITableViewController *)tableVC testBool:(BOOL)boolValue
+{
+    WorkerViewController *workerViewC = [[WorkerViewController alloc] init];
+    
+    UINavigationController *navigationWVC = [[UINavigationController alloc] initWithRootViewController:workerViewC];
+    navigationWVC.navigationBar.barTintColor = [UIColor colorWithRed:52/255.
+                                                               green:52/255.
+                                                                blue:52/255.
+                                                               alpha:1];
+    navigationWVC.navigationBar.barStyle = UIStatusBarStyleLightContent;
+    navigationWVC.navigationBar.tintColor = [UIColor whiteColor];
+    navigationWVC.navigationBar.translucent = NO;
+    
+    //    notifyViewC.edit = boolValue;
+    //    notifyViewC.notify = managedObject;
+    
+    [tableVC.navigationController presentViewController:navigationWVC
                                                animated:YES
                                              completion:nil];
 }
