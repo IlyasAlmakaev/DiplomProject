@@ -7,8 +7,8 @@
 //
 
 #import "AppDelegate.h"
-#import "UIView+Toast.h"
 #import "NotifyTableViewController.h"
+#import "MaterialViewController.h"
 
 @interface AppDelegate ()
 
@@ -127,6 +127,7 @@
     return YES;
 }
 
+    // Go to page Add/Edit notify
 - (void)addObject:(NSManagedObject *)managedObject controller:(UITableViewController *)tableVC testBool:(BOOL)boolValue
 {
     NotifyViewController *notifyViewC = [[NotifyViewController alloc] init];
@@ -142,6 +143,28 @@
     
     notifyViewC.edit = boolValue;
     notifyViewC.notify = managedObject;
+    
+    [tableVC.navigationController presentViewController:navigationVC
+                                               animated:YES
+                                             completion:nil];
+}
+
+    // Go to page Add/Edit material
+- (void)addObjectMaterial:(NSManagedObject *)managedObject controller:(UITableViewController *)tableVC testBool:(BOOL)boolValue
+{
+    MaterialViewController *materialViewC = [[MaterialViewController alloc] init];
+    
+    UINavigationController *navigationVC = [[UINavigationController alloc] initWithRootViewController:materialViewC];
+    navigationVC.navigationBar.barTintColor = [UIColor colorWithRed:52/255.
+                                                              green:52/255.
+                                                               blue:52/255.
+                                                              alpha:1];
+    navigationVC.navigationBar.barStyle = UIStatusBarStyleLightContent;
+    navigationVC.navigationBar.tintColor = [UIColor whiteColor];
+    navigationVC.navigationBar.translucent = NO;
+    
+//    notifyViewC.edit = boolValue;
+//    notifyViewC.notify = managedObject;
     
     [tableVC.navigationController presentViewController:navigationVC
                                                animated:YES

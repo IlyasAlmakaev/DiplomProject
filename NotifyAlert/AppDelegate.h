@@ -20,7 +20,13 @@
 @property (strong, nonatomic) NSArray *localNotifications;
 - (void)deleteNotification:(NSDate *)notificationDate name:(NSString *)notificationName;
 
+    // Go to page Add/Edit notify
 - (void)addObject:(NSManagedObject *)managedObject
+       controller:(UITableViewController *)tableVC
+         testBool:(BOOL)boolValue;
+
+    // Go to page Add/Edit material
+- (void)addObjectMaterial:(NSManagedObject *)managedObject
        controller:(UITableViewController *)tableVC
          testBool:(BOOL)boolValue;
 

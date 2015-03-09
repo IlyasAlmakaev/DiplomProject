@@ -22,3 +22,5 @@
 "TableView_Error" = "Не удалилось!";
 
 "AppDelegate_Notification" = "Напоминание:";
+
+"MaterialTableView_Title" = "Материалы";

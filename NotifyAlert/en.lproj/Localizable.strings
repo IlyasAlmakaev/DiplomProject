@@ -22,3 +22,5 @@
 "TableView_Error" = "Can't Delete!";
 
 "AppDelegate_Notification" = "Remind:";
+
+"MaterialTableView_Title" = "Materials";

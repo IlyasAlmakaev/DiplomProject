@@ -16,6 +16,10 @@
 		11A2C3941A7AFFD600061625 /* NotifyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 11A2C3921A7AFFD600061625 /* NotifyViewController.xib */; };
 		11A2C3981A7B000B00061625 /* NotifyTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 11A2C3961A7B000B00061625 /* NotifyTableViewController.m */; };
 		11A2C3991A7B000B00061625 /* NotifyTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 11A2C3971A7B000B00061625 /* NotifyTableViewController.xib */; };
+		11CE508E1AADAD1800647AC3 /* MaterialTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 11CE508C1AADAD1800647AC3 /* MaterialTableViewController.m */; };
+		11CE508F1AADAD1800647AC3 /* MaterialTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 11CE508D1AADAD1800647AC3 /* MaterialTableViewController.xib */; };
+		11CE50931AADB0C100647AC3 /* MaterialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 11CE50911AADB0C100647AC3 /* MaterialViewController.m */; };
+		11CE50941AADB0C100647AC3 /* MaterialViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 11CE50921AADB0C100647AC3 /* MaterialViewController.xib */; };
 		11D0D51E1AA8A9200019CA50 /* Common.m in Sources */ = {isa = PBXBuildFile; fileRef = 11D0D51D1AA8A9200019CA50 /* Common.m */; };
 		11D19F571A8E690B00B27E2A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 11D19F591A8E690B00B27E2A /* Localizable.strings */; };
 		11D19F621A8EA64A00B27E2A /* DisableTextFieldEdit.m in Sources */ = {isa = PBXBuildFile; fileRef = 11D19F611A8EA64A00B27E2A /* DisableTextFieldEdit.m */; };
@@ -52,6 +56,12 @@
 		11A2C3951A7B000B00061625 /* NotifyTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotifyTableViewController.h; sourceTree = "<group>"; };
 		11A2C3961A7B000B00061625 /* NotifyTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotifyTableViewController.m; sourceTree = "<group>"; };
 		11A2C3971A7B000B00061625 /* NotifyTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotifyTableViewController.xib; sourceTree = "<group>"; };
+		11CE508B1AADAD1800647AC3 /* MaterialTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MaterialTableViewController.h; sourceTree = "<group>"; };
+		11CE508C1AADAD1800647AC3 /* MaterialTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MaterialTableViewController.m; sourceTree = "<group>"; };
+		11CE508D1AADAD1800647AC3 /* MaterialTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MaterialTableViewController.xib; sourceTree = "<group>"; };
+		11CE50901AADB0C100647AC3 /* MaterialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MaterialViewController.h; sourceTree = "<group>"; };
+		11CE50911AADB0C100647AC3 /* MaterialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MaterialViewController.m; sourceTree = "<group>"; };
+		11CE50921AADB0C100647AC3 /* MaterialViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MaterialViewController.xib; sourceTree = "<group>"; };
 		11D0D51C1AA8A9200019CA50 /* Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
 		11D0D51D1AA8A9200019CA50 /* Common.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Common.m; sourceTree = "<group>"; };
 		11D19F5C1A8E6AD200B27E2A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -122,6 +132,12 @@
 				11D92A121A7BE408006080CB /* NotifyTableViewCell.h */,
 				11D92A131A7BE408006080CB /* NotifyTableViewCell.m */,
 				11D1BFE51A7BDAF3002C66B6 /* NotifyTableViewCell.xib */,
+				11CE508B1AADAD1800647AC3 /* MaterialTableViewController.h */,
+				11CE508C1AADAD1800647AC3 /* MaterialTableViewController.m */,
+				11CE508D1AADAD1800647AC3 /* MaterialTableViewController.xib */,
+				11CE50901AADB0C100647AC3 /* MaterialViewController.h */,
+				11CE50911AADB0C100647AC3 /* MaterialViewController.m */,
+				11CE50921AADB0C100647AC3 /* MaterialViewController.xib */,
 				11D3DA201A7D313D00FE41D0 /* NotifyData.h */,
 				11D3DA211A7D313D00FE41D0 /* NotifyData.m */,
 				11D19F601A8EA64A00B27E2A /* DisableTextFieldEdit.h */,
@@ -263,7 +279,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				11D1BFE61A7BDAF3002C66B6 /* NotifyTableViewCell.xib in Resources */,
+				11CE50941AADB0C100647AC3 /* MaterialViewController.xib in Resources */,
 				11A2C3991A7B000B00061625 /* NotifyTableViewController.xib in Resources */,
+				11CE508F1AADAD1800647AC3 /* MaterialTableViewController.xib in Resources */,
 				11A2C3781A7AFF7B00061625 /* Images.xcassets in Resources */,
 				11A2C3941A7AFFD600061625 /* NotifyViewController.xib in Resources */,
 				11D19F571A8E690B00B27E2A /* Localizable.strings in Resources */,
@@ -321,10 +339,12 @@
 				11A2C3931A7AFFD600061625 /* NotifyViewController.m in Sources */,
 				11D3DA221A7D313D00FE41D0 /* NotifyData.m in Sources */,
 				11D92A141A7BE408006080CB /* NotifyTableViewCell.m in Sources */,
+				11CE50931AADB0C100647AC3 /* MaterialViewController.m in Sources */,
 				11D19F621A8EA64A00B27E2A /* DisableTextFieldEdit.m in Sources */,
 				11A2C3981A7B000B00061625 /* NotifyTableViewController.m in Sources */,
 				11D0D51E1AA8A9200019CA50 /* Common.m in Sources */,
 				11A2C36A1A7AFF7B00061625 /* main.m in Sources */,
+				11CE508E1AADAD1800647AC3 /* MaterialTableViewController.m in Sources */,
 				11A2C3701A7AFF7B00061625 /* NotifyAlert.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -444,7 +464,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = NotifyAlert/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -457,7 +477,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = NotifyAlert/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
