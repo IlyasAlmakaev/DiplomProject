@@ -7,8 +7,8 @@
 */
 
 // NotifyViewController
-"View_Title" = "Новое напоминание";
-"NameField_PlaceHolder" = "Название вашего напоминания";
+"View_Title" = "Новое дело";
+"NameField_PlaceHolder" = "Описание заявки";
 "RepeatOption_DoNotRepeat" = "Не повторять";
 "RepeatOption_EveryMinute" = "Каждую минуту";
 "RepeatOption_EveryHour" = "Каждый час";
@@ -17,10 +17,10 @@
 "DateField_PlaceHolder" = "Напоминать?";
 "RepeatField_PlaceHolder" = "Повтор отключен";
 "View_Error" = "Ошибка";
-"Toast_EmptyNameField" = "Введите название напоминания";
+"Toast_EmptyNameField" = "Введите описание заявки";
 
 // NotifyTableViewController
-"TableView_Title" = "Напоминания";
+"TableView_Title" = "Дела";
 "TableView_Error" = "Не удалилось!";
 
 // AppDelegate

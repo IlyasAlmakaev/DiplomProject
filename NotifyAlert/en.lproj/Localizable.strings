@@ -7,8 +7,8 @@
 */
 
 // NotifyViewController
-"View_Title" = "New Remind";
-"NameField_PlaceHolder" = "Name for your remind";
+"View_Title" = "New Work";
+"NameField_PlaceHolder" = "Description for work";
 "RepeatOption_DoNotRepeat" = "Do not repeat";
 "RepeatOption_EveryMinute" = "Every minute";
 "RepeatOption_EveryHour" = "Every hour";
@@ -17,10 +17,10 @@
 "DateField_PlaceHolder" = "Remind it?";
 "RepeatField_PlaceHolder" = "Repeat setting is disabled";
 "View_Error" = "Error";
-"Toast_EmptyNameField" = "Enter name for your remind";
+"Toast_EmptyNameField" = "Enter description for work";
 
 // NotifyTableViewController
-"TableView_Title" = "Reminders";
+"TableView_Title" = "Works";
 "TableView_Error" = "Can't Delete!";
 
 // AppDelegate
