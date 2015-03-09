@@ -9,13 +9,15 @@
 // NotifyViewController
 "View_Title" = "New Work";
 "NameField_PlaceHolder" = "Description for work";
+"MaterialField_PlaceHolderHide" = "Select the material?";
+"MaterialField_PlaceHolder" = "Select the material";
 "RepeatOption_DoNotRepeat" = "Do not repeat";
 "RepeatOption_EveryMinute" = "Every minute";
 "RepeatOption_EveryHour" = "Every hour";
 "RepeatOption_EveryDay" = "Every day";
 "RepeatOption_EveryWeek" = "Every week";
-"DateField_PlaceHolder" = "Remind it?";
-"RepeatField_PlaceHolder" = "Repeat setting is disabled";
+"DateField_PlaceHolder" = "Select a date";
+"RepeatField_PlaceHolder" = "Select a worker";
 "View_Error" = "Error";
 "Toast_EmptyNameField" = "Enter description for work";
 

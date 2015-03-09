@@ -21,9 +21,10 @@
     @property (strong, nonatomic) UIDatePicker *datePickerView;
     @property (strong, nonatomic) NSMutableArray *repeatOptions;
     @property (strong, nonatomic) NSDate *notifyDate;
-    @property (strong, nonatomic) NSString *dateF, *repeatF, *nilString;
+    @property (strong, nonatomic) NSString *dateF, *repeatF, *materialFQ, *materialF, *nilString;
 
     @property (weak, nonatomic) IBOutlet UITextField *nameField;
+    @property (weak, nonatomic) IBOutlet UITextField *materialField;
     @property (weak, nonatomic) IBOutlet DisableTextFieldEdit *dateField;
     @property (weak, nonatomic) IBOutlet DisableTextFieldEdit *repeatField;
     @property (weak, nonatomic) IBOutlet UISwitch *switcher;
@@ -50,6 +51,8 @@
                                                                                                target:self
                                                                                                action:@selector(save)];
         
+        self.materialFQ = NSLocalizedString(@"MaterialField_PlaceHolderHide", nil);
+        self.materialF = NSLocalizedString(@"MaterialField_PlaceHolder", nil);
         self.dateF = NSLocalizedString(@"DateField_PlaceHolder", nil);
         self.repeatF = NSLocalizedString(@"RepeatField_PlaceHolder", nil);
         self.notRepeat = NSLocalizedString(@"RepeatOption_DoNotRepeat", nil);
@@ -76,26 +79,25 @@
     [super viewDidLoad];
     // Show PickerView
     CGRect pickerFrame = CGRectZero;
-    // REVIEW Почему 162? Почему не 163?
-    // ANSWER Ориентировался по размеру datePicker. Заменил на CGRectZero, чтобы размеры были поумолчанию
+
     self.pickerView = [[UIPickerView alloc] initWithFrame:pickerFrame];
-    // REVIEW Создать picker view лишь один раз.
-    // REVIEW Зачем каждый раз создавать новый?
+
     self.pickerView.delegate = self;
     self.pickerView.dataSource = self;
-    // REVIEW И каждый раз его настраивать. Зачем когда можно это сделать
-    // REVIEW ровно один раз?
-    // Show DatePickerView
+    
+    // Show DatePikerView
     CGRect datePickerFrame = CGRectZero;
     self.datePickerView = [[UIDatePicker alloc] initWithFrame:datePickerFrame];
     [self.datePickerView setDatePickerMode:UIDatePickerModeDateAndTime];
-    // REVIEW Тот же вопрос про 162 и про создание каждый раз.
+
     [self.datePickerView setMinimumDate:[NSDate date]];
-    self.nameField.placeholder = NSLocalizedString(@"NameField_PlaceHolder", nil);
-    // REVIEW Тоже надо делать один раз.
-    // ANSWER Исправил.
-    self.appD = [[AppDelegate alloc] init];
+    
     self.repeatField.delegate = self;
+    
+    self.nameField.placeholder = NSLocalizedString(@"NameField_PlaceHolder", nil);
+    self.materialField.placeholder = self.materialFQ;
+    
+    self.appD = [[AppDelegate alloc] init];
     self.com = [[Common alloc] init];
 }
 
@@ -146,18 +148,17 @@
         // ANSWER Исправил.
         indicator = NO;
         
+        self.nameField.text=nil;
         self.dateField.text = nil;
         self.repeatField.text = nil;
         self.dateField.placeholder = self.dateF;
         self.repeatField.placeholder = self.repeatF;
-        self.nameField.text=nil;
         
         NSUserDefaults *usrDefaults = [NSUserDefaults standardUserDefaults];
         [usrDefaults setInteger:0 forKey:@"Index"];
     }
     self.switcher.on = indicator;
-    self.dateField.enabled = indicator;
-    self.repeatField.enabled = indicator;
+    self.materialField.enabled = indicator;
     // REVIEW Сократить портянку в 2 раза. Например, если self.switcher.on
     // REVIEW зависит от self.edit и self.notify, то конечное значение BOOL
     // REVIEW достоточно получить ровно 1 раз, после чего его присвоить по
@@ -179,24 +180,18 @@
     {
         indicator = YES;
         
-        [self dateFormatter:[NSDate date]];
-        self.notifyDate = [NSDate date];
-        self.repeatField.text = nil;
-        self.repeatField.placeholder = [self.repeatOptions objectAtIndex:0];
-        [self.datePickerView setDate:[NSDate date]];
+        self.materialField.text = nil;
+        self.materialField.placeholder = self.materialF;
     }
     else
     {
         indicator = NO;
-        
-        self.dateField.text = nil;
-        self.repeatField.text = nil;
-        self.dateField.placeholder = self.dateF;
-        self.repeatField.placeholder = self.repeatF;
+
+        self.materialField.text = nil;
+        self.materialField.placeholder = self.materialFQ;
     }
     
-    self.dateField.enabled = indicator;
-    self.repeatField.enabled = indicator;
+    self.materialField.enabled = indicator;
 // REVIEW Поправить отступы.
 // REVIEW Сократить портянку в 2 раза описанным выше способом.
 // ANSWER Сократил.

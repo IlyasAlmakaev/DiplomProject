@@ -9,13 +9,15 @@
 // NotifyViewController
 "View_Title" = "Новое дело";
 "NameField_PlaceHolder" = "Описание заявки";
+"MaterialField_PlaceHolderHide" = "Выбрать материал?";
+"MaterialField_PlaceHolder" = "Выбрать материал";
 "RepeatOption_DoNotRepeat" = "Не повторять";
 "RepeatOption_EveryMinute" = "Каждую минуту";
 "RepeatOption_EveryHour" = "Каждый час";
 "RepeatOption_EveryDay" = "Каждый день";
 "RepeatOption_EveryWeek" = "Каждую неделю";
-"DateField_PlaceHolder" = "Напоминать?";
-"RepeatField_PlaceHolder" = "Повтор отключен";
+"DateField_PlaceHolder" = "Выберите дату";
+"RepeatField_PlaceHolder" = "Выберите работника";
 "View_Error" = "Ошибка";
 "Toast_EmptyNameField" = "Введите описание заявки";
 
