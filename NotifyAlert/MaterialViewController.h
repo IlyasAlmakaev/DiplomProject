@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AppDelegate.h"
 
 @interface MaterialViewController : UIViewController
+
+@property (strong) NSManagedObject *material;
+@property (nonatomic) BOOL editMaterial;
 
 @end

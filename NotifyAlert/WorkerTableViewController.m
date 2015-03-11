@@ -7,7 +7,7 @@
 //
 
 #import "WorkerTableViewController.h"
-#import "AppDelegate.h"
+
 
 @interface WorkerTableViewController ()
 

@@ -7,11 +7,13 @@
 //
 
 #import "MaterialTableViewController.h"
-#import "AppDelegate.h"
+#import "MaterialTableViewCell.h"
 
 @interface MaterialTableViewController ()
 
 @property (strong, nonatomic) AppDelegate *appD;
+
+@property (strong, nonatomic) NSMutableArray *materials;
 
 @end
 
@@ -31,44 +33,54 @@
     return self;
 }
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     
     self.appD = [[AppDelegate alloc] init];
     
     self.tableView.tableFooterView = [[UIView alloc] init];
+    
+    [self.tableView registerNib:[UINib nibWithNibName:@"MaterialTableViewCell" bundle:nil] forCellReuseIdentifier:@"IdCellMaterial"];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    // Load data "NotifyData" in tableView
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"MaterialData"];
+    self.materials = [[self.appD.managedOCTableMaterial executeFetchRequest:fetchRequest error:nil] mutableCopy];
+    [self.tableView reloadData];
 }
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    return self.materials.count;
 }
 
-- (void)addMaterial
-{
-    [self.appD addObjectMaterial:nil
-                      controller:self
-                        testBool:NO];
-}
-
-/*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
     
-    // Configure the cell...
-    
+    NSManagedObject *material = [self.materials objectAtIndex:indexPath.row];
+    // REVIEW Заменить на использование tableView:heightForRowAtIndexPath:
+    // REVIEW Получать высоту из XIB.
+    // ANSWER Оставил одну ячейку стандартного размера.
+    MaterialTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"IdCellMaterial"];
+    [cell setup:material];
+    // REVIEW Сделать у ячейки метод setup:(NSManagedObject *)notification
+    // REVIEW Лишь в нём всё настраивать, ибо настройка ячейки - это дело
+    // REVIEW ячейки, а не её родителя.
+    // ANSWER Исправил
     return cell;
 }
-*/
+
 
 /*
 // Override to support conditional editing of the table view.
@@ -89,6 +101,13 @@
     }   
 }
 */
+
+- (void)addMaterial
+{
+    [self.appD addObjectMaterial:nil
+                      controller:self
+                        testBool:NO];
+}
 
 /*
 // Override to support rearranging the table view.

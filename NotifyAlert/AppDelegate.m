@@ -322,6 +322,16 @@
     return notifyTalbeViewC.managedObjectContext;
 }
 
+- (NSManagedObjectContext *)managedOCTableMaterial
+{
+    MaterialTableViewController *materialTalbeViewC = [[MaterialTableViewController alloc] init];
+    
+    AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
+    materialTalbeViewC.managedObjectContextMaterial = appDelegate.managedObjectContext;
+    
+    return materialTalbeViewC.managedObjectContextMaterial;
+}
+
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
 }

@@ -7,8 +7,16 @@
 //
 
 #import "MaterialViewController.h"
+#import "MaterialData.h"
+#import "Common.h"
 
 @interface MaterialViewController ()
+
+@property (weak, nonatomic) IBOutlet UITextField *nameMaterialField;
+@property (weak, nonatomic) IBOutlet UITextField *countMaterialField;
+
+@property (strong, nonatomic) AppDelegate *appD;
+@property (strong, nonatomic) Common *com;
 
 @end
 
@@ -35,11 +43,51 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    self.appD = [[AppDelegate alloc] init];
+    self.com = [[Common alloc] init];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+// Add/Edit notification
+- (void)save
+{
+    NSString *ErrorString = NSLocalizedString(@"View_Error", nil);
+    // Not empty field
+    if ((self.nameMaterialField.text && self.nameMaterialField.text.length > 0 &&
+         [self.nameMaterialField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]].length!=0) &&
+        (self.countMaterialField.text && self.countMaterialField.text.length > 0
+         && [self.countMaterialField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]].length!=0))
+    {
+            // Edit material
+            if (self.material && self.editMaterial == YES)
+            {
+                [self.material setValue:self.nameMaterialField.text forKey:@"nameMaterial"];
+                [self.material setValue:self.countMaterialField.text forKey:@"countMaterial"];
+            }
+            // Add new material
+            else
+            {
+                MaterialData *materialAdd = [NSEntityDescription insertNewObjectForEntityForName:@"MaterialData"
+                                                                          inManagedObjectContext:self.appD.managedOC];
+            
+                materialAdd.nameMaterial = self.nameMaterialField.text;
+                materialAdd.countMaterial = self.countMaterialField.text;
+            }
+            
+            NSError *error = nil;
+            
+            if (![self.appD.managedOC save:&error])
+                [self.com showToast:(@"%@: %@ %@", ErrorString, error, [error localizedDescription]) view:self];
+        
+        // Dismiss the view controller
+        [self performSelector:@selector(back) withObject:nil];
+    }
+    else
+        [self.com showToast:NSLocalizedString(@"Toast_EmptyNameField", nil) view:self];
 }
 
 // Exit

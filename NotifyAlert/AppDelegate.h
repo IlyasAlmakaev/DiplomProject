@@ -45,7 +45,7 @@
 
 - (NSManagedObjectContext *)managedOC;
 - (NSManagedObjectContext *)managedOCTable;
-
+- (NSManagedObjectContext *)managedOCTableMaterial;
 
 
 @end
