@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
     </dependencies>
     <objects>
@@ -10,9 +9,9 @@
                 <outlet property="dateField" destination="EZF-zN-qd7" id="4h3-sJ-1rD"/>
                 <outlet property="materialField" destination="fk5-gu-Ov2" id="2ou-ng-yF3"/>
                 <outlet property="nameField" destination="4i0-R2-khE" id="P5A-EW-Dey"/>
-                <outlet property="repeatField" destination="u3A-z3-Snb" id="rrK-K3-7xq"/>
                 <outlet property="switcher" destination="crr-TP-bHd" id="WSh-FJ-myl"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="workerField" destination="u3A-z3-Snb" id="nF6-NL-Lnx"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>

@@ -8,12 +8,14 @@
 
 #import "MaterialTableViewController.h"
 #import "MaterialTableViewCell.h"
+#import "Common.h"
 
 @interface MaterialTableViewController ()
 
 @property (strong, nonatomic) AppDelegate *appD;
 
 @property (strong, nonatomic) NSMutableArray *materials;
+@property (strong, nonatomic) Common *com;
 
 @end
 
@@ -38,6 +40,7 @@
     [super viewDidLoad];
     
     self.appD = [[AppDelegate alloc] init];
+    self.com = [[Common alloc] init];
     
     self.tableView.tableFooterView = [[UIView alloc] init];
     
@@ -82,25 +85,44 @@
 }
 
 
-/*
+
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
     // Return NO if you do not want the specified item to be editable.
     return YES;
 }
-*/
 
-/*
+
+
 // Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete)
+    {
         // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+        [self.appD.managedOCTableMaterial deleteObject:[self.materials objectAtIndex:indexPath.row]];
+        
+        NSString *notDelete = NSLocalizedString(@"TableView_Error", nil);
+        NSError *error = nil;
+        
+        [self.materials removeObjectAtIndex:indexPath.row];
+        
+        if (![self.appD.managedOCTableMaterial save:&error])
+        {
+            [self.com showToast:(@"%@ %@ %@", notDelete, error, [error localizedDescription]) view:self];
+            return;
+        }
+        
+        [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    }
 }
-*/
+
+// In a xib-based application, navigation from a table can be handled in -tableView:didSelectRowAtIndexPath:
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [self.appD addObjectMaterial:[self.materials objectAtIndex:indexPath.row]
+                      controller:self
+                        testBool:YES];
+}
 
 - (void)addMaterial
 {
@@ -123,21 +145,8 @@
 }
 */
 
-/*
-#pragma mark - Table view delegate
 
-// In a xib-based application, navigation from a table can be handled in -tableView:didSelectRowAtIndexPath:
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Navigation logic may go here, for example:
-    // Create the next view controller.
-    <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:<#@"Nib name"#> bundle:nil];
-    
-    // Pass the selected object to the new view controller.
-    
-    // Push the view controller.
-    [self.navigationController pushViewController:detailViewController animated:YES];
-}
-*/
+#pragma mark - Table view delegate
 
 /*
 #pragma mark - Navigation

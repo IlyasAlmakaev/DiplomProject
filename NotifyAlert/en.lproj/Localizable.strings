@@ -12,7 +12,7 @@
 "MaterialField_PlaceHolderHide" = "Select the material?";
 "MaterialField_PlaceHolder" = "Select the material";
 "DateField_PlaceHolder" = "Select a date";
-"RepeatField_PlaceHolder" = "Select a worker";
+"WorkerField_PlaceHolder" = "Select a worker";
 "View_Error" = "Error";
 "Toast_EmptyNameField" = "Enter description for work";
 
@@ -28,6 +28,8 @@
 
 // MaterialViewController
 "Material_Title" = "Materials";
+"NameMaterialField_PlaceHolder" = "Enter the name of material";
+"CountMaterialField_PlaceHolder" = "Enter the quantity of material";
 
 // MaterialTableViewController
 "MaterialTableView_Title" = "Materials";

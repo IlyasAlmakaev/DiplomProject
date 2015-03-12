@@ -202,8 +202,8 @@
     navigationMVC.navigationBar.tintColor = [UIColor whiteColor];
     navigationMVC.navigationBar.translucent = NO;
     
-//    notifyViewC.edit = boolValue;
-//    notifyViewC.notify = managedObject;
+    materialViewC.editMaterial = boolValue;
+    materialViewC.material = managedObject;
     
     [tableVC.navigationController presentViewController:navigationMVC
                                                animated:YES

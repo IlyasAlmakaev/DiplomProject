@@ -12,7 +12,7 @@
 
 @interface MaterialData : NSManagedObject
 
-@property (nonatomic, retain) NSString * nameMaterial;
-@property (nonatomic, retain) NSString * countMaterial;
+@property (nonatomic, retain) NSString *nameMaterial;
+@property (nonatomic, retain) NSString *countMaterial;
 
 @end

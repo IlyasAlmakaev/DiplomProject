@@ -21,12 +21,12 @@
     @property (strong, nonatomic) UIDatePicker *datePickerView;
     @property (strong, nonatomic) NSMutableArray *repeatOptions;
     @property (strong, nonatomic) NSDate *notifyDate;
-    @property (strong, nonatomic) NSString *dateF, *repeatF, *materialFQ, *materialF, *nilString;
+    @property (strong, nonatomic) NSString *dateF, *repeatF, *materialFQ, *materialF, *workerF, *nilString;
 
     @property (weak, nonatomic) IBOutlet UITextField *nameField;
     @property (weak, nonatomic) IBOutlet UITextField *materialField;
     @property (weak, nonatomic) IBOutlet DisableTextFieldEdit *dateField;
-    @property (weak, nonatomic) IBOutlet DisableTextFieldEdit *repeatField;
+    @property (weak, nonatomic) IBOutlet DisableTextFieldEdit *workerField;
     @property (weak, nonatomic) IBOutlet UISwitch *switcher;
 
     - (IBAction)switcherPressed:(id)sender;
@@ -53,6 +53,7 @@
         
         self.materialFQ = NSLocalizedString(@"MaterialField_PlaceHolderHide", nil);
         self.materialF = NSLocalizedString(@"MaterialField_PlaceHolder", nil);
+        self.workerF = NSLocalizedString(@"WorkerField_PlaceHolder", nil);
         self.dateF = NSLocalizedString(@"DateField_PlaceHolder", nil);
         self.nilString = @"";
         
@@ -86,7 +87,7 @@
 
     [self.datePickerView setMinimumDate:[NSDate date]];
     
-    self.repeatField.delegate = self;
+    self.workerField.delegate = self;
     
     self.nameField.placeholder = NSLocalizedString(@"NameField_PlaceHolder", nil);
     self.materialField.placeholder = self.materialFQ;
@@ -118,8 +119,8 @@
         [self.datePickerView setDate:[self.notify valueForKey:@"date"]];
         
         self.notifyDate = [self.notify valueForKey:@"date"];
-        [self.repeatField setText:[self.notify valueForKey:@"worker"]];
-        self.repeatField.placeholder = nil;
+        [self.workerField setText:[self.notify valueForKey:@"worker"]];
+        self.workerField.placeholder = nil;
         
         if ([self.notify valueForKey:@"date"] == nil && [self.notify valueForKey:@"worker"] == nil)
         {
@@ -128,9 +129,9 @@
             indicator = NO;
             
             self.dateField.text = nil;
-            self.repeatField.text = nil;
+            self.workerField.text = nil;
             self.dateField.placeholder = self.dateF;
-            self.repeatField.placeholder = self.repeatF;
+            self.workerField.placeholder = self.repeatF;
             
             NSUserDefaults *usrDefaults = [NSUserDefaults standardUserDefaults];
             [usrDefaults setInteger:0 forKey:@"Index"];
@@ -144,9 +145,9 @@
         
         self.nameField.text=nil;
         self.dateField.text = nil;
-        self.repeatField.text = nil;
+        self.workerField.text = nil;
         self.dateField.placeholder = self.dateF;
-        self.repeatField.placeholder = self.repeatF;
+        self.workerField.placeholder = self.materialF;
         
         NSUserDefaults *usrDefaults = [NSUserDefaults standardUserDefaults];
         [usrDefaults setInteger:0 forKey:@"Index"];
@@ -218,7 +219,7 @@
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
     
-    if (textField == self.repeatField)
+    if (textField == self.workerField)
     {
  /*       if ([self.repeatField.text isEqual: self.notRepeat] || self.repeatField.placeholder == [self.repeatOptions objectAtIndex:0])
         {
@@ -242,7 +243,7 @@
         // REVIEW Поменять на сравнение с внутренней переменной, никак
         // REVIEW не связанной со строкой отображения.
         // ANSWER Исправил. Прослеживается связь, но, надеюсь, так можно.
-        self.repeatField.inputView = self.pickerView;
+        self.workerField.inputView = self.pickerView;
     }
     else if (textField == self.dateField)
     {
@@ -290,7 +291,7 @@
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
-    self.repeatField.text = [self.repeatOptions objectAtIndex:row];
+    self.workerField.text = [self.repeatOptions objectAtIndex:row];
 }
 
 // Add/Edit notification
@@ -315,14 +316,14 @@
                 [self.notify setValue:self.nameField.text forKey:@"descript"];
                 [self.notify setValue:self.notifyDate forKey:@"date"];
                 
-                if ([self.repeatField.text isEqual:self.nilString])
+                if ([self.workerField.text isEqual:self.nilString])
                     // REVIEW Опять же использовать внутреннюю переменную,
                     // REVIEW никак не связанную с отображением.
                     // ANSWER Исправил.
-                    [self.notify setValue:self.repeatField.placeholder forKey:@"worker"];
+                    [self.notify setValue:self.workerField.placeholder forKey:@"worker"];
                 
                 else
-                    [self.notify setValue:self.repeatField.text forKey:@"worker"];
+                    [self.notify setValue:self.workerField.text forKey:@"worker"];
             }
             // Add new notification
             else
@@ -333,13 +334,13 @@
                 notifyAdd.descript = self.nameField.text;
                 [notifyAdd setValue:self.notifyDate forKey:@"date"];
                 
-                if ([self.repeatField.text isEqual:self.nilString])
+                if ([self.workerField.text isEqual:self.nilString])
                     // REVIEW Опять же...
                     // ANSWER Исправил
-                    notifyAdd.worker = self.repeatField.placeholder;
+                    notifyAdd.worker = self.workerField.placeholder;
                 
                 else
-                    notifyAdd.worker = self.repeatField.text;
+                    notifyAdd.worker = self.workerField.text;
             }
             
             NSError *error = nil;
@@ -353,7 +354,7 @@
             
             else
                 // register Notification
-                [self.appD dateField: self.notifyDate nameField: self.nameField.text repeatField: self.repeatField.text];
+                [self.appD dateField: self.notifyDate nameField: self.nameField.text repeatField: self.workerField.text];
             // REVIEW Опять же реализовать это с помощью делегата в AppDelegate.
             // REVIEW Ни в коем случае не использовать Application НЕЯВНО.
             // ANSWER Исправил.

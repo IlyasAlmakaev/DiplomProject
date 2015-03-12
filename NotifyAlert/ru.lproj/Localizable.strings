@@ -10,9 +10,9 @@
 "View_Title" = "Новое дело";
 "NameField_PlaceHolder" = "Описание заявки";
 "MaterialField_PlaceHolderHide" = "Выбрать материал?";
-"MaterialField_PlaceHolder" = "Выбрать материал";
+"MaterialField_PlaceHolder" = "Выберите материал";
 "DateField_PlaceHolder" = "Выберите дату";
-"RepeatField_PlaceHolder" = "Выберите работника";
+"WorkerField_PlaceHolder" = "Выберите работника";
 "View_Error" = "Ошибка";
 "Toast_EmptyNameField" = "Введите описание заявки";
 
@@ -28,6 +28,8 @@
 
 // MaterialViewController
 "Material_Title" = "Материалы";
+"NameMaterialField_PlaceHolder" = "Введите название материала";
+"CountMaterialField_PlaceHolder" = "Введите количество материала";
 
 // MaterialTableViewController
 "MaterialTableView_Title" = "Материалы";

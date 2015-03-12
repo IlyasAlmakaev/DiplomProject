@@ -47,9 +47,24 @@
     self.com = [[Common alloc] init];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    // Do any additional setup after loading the view from its nib.
+    
+    if (self.editMaterial)
+    {
+        
+        [self.nameMaterialField setText:[self.material valueForKey:@"nameMaterial"]];
+        [self.countMaterialField setText:[self.material valueForKey:@"countMaterial"]];
+
+//        self.nameMaterialField.placeholder = nil;
+    }
+    else
+    {
+        self.nameMaterialField.placeholder = NSLocalizedString(@"NameMaterialField_PlaceHolder", nil);
+        self.countMaterialField.placeholder = NSLocalizedString(@"CountMaterialField_PlaceHolder", nil);
+    }
 }
 
 // Add/Edit notification
