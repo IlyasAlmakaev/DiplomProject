@@ -11,4 +11,6 @@
 
 @interface WorkerTableViewController : UITableViewController
 
+@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
+
 @end

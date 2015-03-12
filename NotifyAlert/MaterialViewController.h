@@ -13,5 +13,6 @@
 
 @property (strong) NSManagedObject *material;
 @property (nonatomic) BOOL editMaterial;
+@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 
 @end

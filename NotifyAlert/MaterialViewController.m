@@ -67,7 +67,7 @@
     }
 }
 
-// Add/Edit notification
+// Add/Edit material
 - (void)save
 {
     NSString *ErrorString = NSLocalizedString(@"View_Error", nil);
@@ -87,7 +87,7 @@
             else
             {
                 MaterialData *materialAdd = [NSEntityDescription insertNewObjectForEntityForName:@"MaterialData"
-                                                                          inManagedObjectContext:self.appD.managedOC];
+                                                                          inManagedObjectContext:self.appD.managedOCMaterial];
             
                 materialAdd.nameMaterial = self.nameMaterialField.text;
                 materialAdd.countMaterial = self.countMaterialField.text;
@@ -95,7 +95,7 @@
             
             NSError *error = nil;
             
-            if (![self.appD.managedOC save:&error])
+            if (![self.appD.managedOCMaterial save:&error])
                 [self.com showToast:(@"%@: %@ %@", ErrorString, error, [error localizedDescription]) view:self];
         
         // Dismiss the view controller

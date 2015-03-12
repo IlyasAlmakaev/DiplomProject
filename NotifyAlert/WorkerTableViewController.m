@@ -7,11 +7,16 @@
 //
 
 #import "WorkerTableViewController.h"
+#import "WorkerTableViewCell.h"
+#import "Common.h"
 
 
 @interface WorkerTableViewController ()
 
 @property (strong, nonatomic) AppDelegate *appD;
+
+@property (strong, nonatomic) NSMutableArray *workers;
+@property (strong, nonatomic) Common *com;
 
 @end
 
@@ -35,22 +40,78 @@
     [super viewDidLoad];
     
     self.appD = [[AppDelegate alloc] init];
+    self.com = [[Common alloc] init];
     
     self.tableView.tableFooterView = [[UIView alloc] init];
+    
+    [self.tableView registerNib:[UINib nibWithNibName:@"WorkerTableViewCell" bundle:nil] forCellReuseIdentifier:@"IdCellWorker"];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    // Load data "NotifyData" in tableView
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"WorkerData"];
+    self.workers = [[self.appD.managedOCTableWorker executeFetchRequest:fetchRequest error:nil] mutableCopy];
+    [self.tableView reloadData];
 }
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    return self.workers.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSManagedObject *worker = [self.workers objectAtIndex:indexPath.row];
+    
+    WorkerTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"IdCellWorker"];
+    [cell setup:worker];
+    
+    return cell;
+}
+
+// Override to support conditional editing of the table view.
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    // Return NO if you do not want the specified item to be editable.
+    return YES;
+}
+
+// Override to support editing the table view.
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete)
+    {
+        // Delete the row from the data source
+        [self.appD.managedOCTableWorker deleteObject:[self.workers objectAtIndex:indexPath.row]];
+        
+        NSString *notDelete = NSLocalizedString(@"TableView_Error", nil);
+        NSError *error = nil;
+        
+        [self.workers removeObjectAtIndex:indexPath.row];
+        
+        if (![self.appD.managedOCTableWorker save:&error])
+        {
+            [self.com showToast:(@"%@ %@ %@", notDelete, error, [error localizedDescription]) view:self];
+            return;
+        }
+        
+        [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    }
+}
+
+// In a xib-based application, navigation from a table can be handled in -tableView:didSelectRowAtIndexPath:
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [self.appD addObjectWorker:[self.workers objectAtIndex:indexPath.row]
+                      controller:self
+                        testBool:YES];
 }
 
 - (void)addWorker
@@ -59,36 +120,6 @@
                       controller:self
                         testBool:NO];
 }
-
-/*
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
-    return cell;
-}
-*/
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
 
 /*
 // Override to support rearranging the table view.

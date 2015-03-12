@@ -10,8 +10,13 @@
         <attribute name="material" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="worker" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
+    <entity name="WorkerData" representedClassName="WorkerData" syncable="YES">
+        <attribute name="nameWorker" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="statusWorker" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <elements>
-        <element name="NotifyData" positionX="-63" positionY="-18" width="128" height="105"/>
         <element name="MaterialData" positionX="-63" positionY="9" width="128" height="75"/>
+        <element name="NotifyData" positionX="-63" positionY="-18" width="128" height="105"/>
+        <element name="WorkerData" positionX="-63" positionY="9" width="128" height="75"/>
     </elements>
 </model>

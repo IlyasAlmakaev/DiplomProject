@@ -322,6 +322,16 @@
     return notifyTalbeViewC.managedObjectContext;
 }
 
+- (NSManagedObjectContext *)managedOCMaterial
+{
+    MaterialViewController *materialViewC = [[MaterialViewController alloc] init];
+    
+    AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
+    materialViewC.managedObjectContext = appDelegate.managedObjectContext;
+    
+    return materialViewC.managedObjectContext;
+}
+
 - (NSManagedObjectContext *)managedOCTableMaterial
 {
     MaterialTableViewController *materialTalbeViewC = [[MaterialTableViewController alloc] init];
@@ -330,6 +340,26 @@
     materialTalbeViewC.managedObjectContextMaterial = appDelegate.managedObjectContext;
     
     return materialTalbeViewC.managedObjectContextMaterial;
+}
+
+- (NSManagedObjectContext *)managedOCWorker
+{
+    WorkerViewController *workerViewC = [[WorkerViewController alloc] init];
+    
+    AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
+    workerViewC.managedObjectContext = appDelegate.managedObjectContext;
+    
+    return workerViewC.managedObjectContext;
+}
+
+- (NSManagedObjectContext *)managedOCTableWorker
+{
+    WorkerTableViewController *workerTalbeViewC = [[WorkerTableViewController alloc] init];
+    
+    AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
+    workerTalbeViewC.managedObjectContext = appDelegate.managedObjectContext;
+    
+    return workerTalbeViewC.managedObjectContext;
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {

@@ -14,7 +14,7 @@
 "DateField_PlaceHolder" = "Select a date";
 "WorkerField_PlaceHolder" = "Select a worker";
 "View_Error" = "Error";
-"Toast_EmptyNameField" = "Enter description for work";
+"Toast_EmptyNameField" = "Fill in the fields";
 
 // NotifyTableViewController
 "TableView_Title" = "Works";
@@ -36,6 +36,8 @@
 
 // WorkerViewController
 "Worker_Title" = "Workers";
+"NameWorkerField_PlaceHolder" = "Enter a name of worker";
+"StatusWorkerField_PlaceHolder" = "Enter the status of worker";
 
 // WorkerTableViewController
 "WorkerTableView_Title" = "Workers";

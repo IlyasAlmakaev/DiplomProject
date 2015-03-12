@@ -14,7 +14,7 @@
 "DateField_PlaceHolder" = "Выберите дату";
 "WorkerField_PlaceHolder" = "Выберите работника";
 "View_Error" = "Ошибка";
-"Toast_EmptyNameField" = "Введите описание заявки";
+"Toast_EmptyNameField" = "Заполните поля";
 
 // NotifyTableViewController
 "TableView_Title" = "Дела";
@@ -36,6 +36,8 @@
 
 // WorkerViewController
 "Worker_Title" = "Исполнители";
+"NameWorkerField_PlaceHolder" = "Введите ФИО исполнителя";
+"StatusWorkerField_PlaceHolder" = "Введите должность исполнителя";
 
 // WorkerTableViewController
 "WorkerTableView_Title" = "Исполнители";

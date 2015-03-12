@@ -33,6 +33,9 @@
 		11D19F621A8EA64A00B27E2A /* DisableTextFieldEdit.m in Sources */ = {isa = PBXBuildFile; fileRef = 11D19F611A8EA64A00B27E2A /* DisableTextFieldEdit.m */; };
 		11D1BFE61A7BDAF3002C66B6 /* NotifyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 11D1BFE51A7BDAF3002C66B6 /* NotifyTableViewCell.xib */; };
 		11D92A141A7BE408006080CB /* NotifyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 11D92A131A7BE408006080CB /* NotifyTableViewCell.m */; };
+		11DDEA141AB1D368003F291A /* WorkerData.m in Sources */ = {isa = PBXBuildFile; fileRef = 11DDEA131AB1D368003F291A /* WorkerData.m */; };
+		11DDEA181AB1E544003F291A /* WorkerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 11DDEA161AB1E544003F291A /* WorkerTableViewCell.m */; };
+		11DDEA191AB1E544003F291A /* WorkerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 11DDEA171AB1E544003F291A /* WorkerTableViewCell.xib */; };
 		B0E4F12D72FF9721BC3C8EF6 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D42ADF6BD65DA85CAF1F95E /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -92,6 +95,11 @@
 		11D1BFE51A7BDAF3002C66B6 /* NotifyTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotifyTableViewCell.xib; sourceTree = "<group>"; };
 		11D92A121A7BE408006080CB /* NotifyTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotifyTableViewCell.h; sourceTree = "<group>"; };
 		11D92A131A7BE408006080CB /* NotifyTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotifyTableViewCell.m; sourceTree = "<group>"; };
+		11DDEA121AB1D368003F291A /* WorkerData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkerData.h; sourceTree = "<group>"; };
+		11DDEA131AB1D368003F291A /* WorkerData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkerData.m; sourceTree = "<group>"; };
+		11DDEA151AB1E544003F291A /* WorkerTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkerTableViewCell.h; sourceTree = "<group>"; };
+		11DDEA161AB1E544003F291A /* WorkerTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkerTableViewCell.m; sourceTree = "<group>"; };
+		11DDEA171AB1E544003F291A /* WorkerTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WorkerTableViewCell.xib; sourceTree = "<group>"; };
 		1D42ADF6BD65DA85CAF1F95E /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FAF4C4F6C1AA1329BA2B7F3 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		F68281B98270391D267E1031 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -165,6 +173,9 @@
 				11C89D931AADDFC900C258F3 /* WorkerViewController.h */,
 				11C89D941AADDFC900C258F3 /* WorkerViewController.m */,
 				11C89D951AADDFC900C258F3 /* WorkerViewController.xib */,
+				11DDEA151AB1E544003F291A /* WorkerTableViewCell.h */,
+				11DDEA161AB1E544003F291A /* WorkerTableViewCell.m */,
+				11DDEA171AB1E544003F291A /* WorkerTableViewCell.xib */,
 				11D19F601A8EA64A00B27E2A /* DisableTextFieldEdit.h */,
 				11D19F611A8EA64A00B27E2A /* DisableTextFieldEdit.m */,
 				11D0D51C1AA8A9200019CA50 /* Common.h */,
@@ -176,6 +187,8 @@
 				11C89D9E1AAE149800C258F3 /* NotifyData.m */,
 				11CCEDC61AAF96910023A95F /* MaterialData.h */,
 				11CCEDC71AAF96910023A95F /* MaterialData.m */,
+				11DDEA121AB1D368003F291A /* WorkerData.h */,
+				11DDEA131AB1D368003F291A /* WorkerData.m */,
 			);
 			path = NotifyAlert;
 			sourceTree = "<group>";
@@ -307,6 +320,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				11DDEA191AB1E544003F291A /* WorkerTableViewCell.xib in Resources */,
 				11CD63091AB06224007FC6F8 /* MaterialTableViewCell.xib in Resources */,
 				11C89D9C1AADE05200C258F3 /* WorkerTableViewController.xib in Resources */,
 				11D1BFE61A7BDAF3002C66B6 /* NotifyTableViewCell.xib in Resources */,
@@ -371,6 +385,7 @@
 				11A2C3931A7AFFD600061625 /* NotifyViewController.m in Sources */,
 				11D92A141A7BE408006080CB /* NotifyTableViewCell.m in Sources */,
 				11C89D9F1AAE149800C258F3 /* NotifyData.m in Sources */,
+				11DDEA181AB1E544003F291A /* WorkerTableViewCell.m in Sources */,
 				11CE50931AADB0C100647AC3 /* MaterialViewController.m in Sources */,
 				11CD63081AB06224007FC6F8 /* MaterialTableViewCell.m in Sources */,
 				11D19F621A8EA64A00B27E2A /* DisableTextFieldEdit.m in Sources */,
@@ -378,6 +393,7 @@
 				11C89D9B1AADE05200C258F3 /* WorkerTableViewController.m in Sources */,
 				11D0D51E1AA8A9200019CA50 /* Common.m in Sources */,
 				11A2C36A1A7AFF7B00061625 /* main.m in Sources */,
+				11DDEA141AB1D368003F291A /* WorkerData.m in Sources */,
 				11CE508E1AADAD1800647AC3 /* MaterialTableViewController.m in Sources */,
 				11C89D961AADDFC900C258F3 /* WorkerViewController.m in Sources */,
 				11CCEDC81AAF96910023A95F /* MaterialData.m in Sources */,

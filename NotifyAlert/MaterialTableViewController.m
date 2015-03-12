@@ -72,27 +72,18 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     NSManagedObject *material = [self.materials objectAtIndex:indexPath.row];
-    // REVIEW Заменить на использование tableView:heightForRowAtIndexPath:
-    // REVIEW Получать высоту из XIB.
-    // ANSWER Оставил одну ячейку стандартного размера.
+
     MaterialTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"IdCellMaterial"];
     [cell setup:material];
-    // REVIEW Сделать у ячейки метод setup:(NSManagedObject *)notification
-    // REVIEW Лишь в нём всё настраивать, ибо настройка ячейки - это дело
-    // REVIEW ячейки, а не её родителя.
-    // ANSWER Исправил
+
     return cell;
 }
-
-
 
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
     // Return NO if you do not want the specified item to be editable.
     return YES;
 }
-
-
 
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
