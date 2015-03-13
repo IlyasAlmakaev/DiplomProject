@@ -8,6 +8,8 @@
 
 #import "NotifyViewController.h"
 #import "NotifyData.h"
+#import "MaterialData.h"
+#import "WorkerData.h"
 #import "DisableTextFieldEdit.h"
 #import "Common.h"
 
@@ -17,7 +19,11 @@
 
     @property (strong, nonatomic) Common *com;
     @property (strong, nonatomic) AppDelegate *appD;
-    @property (strong, nonatomic) UIPickerView *pickerView;
+
+    @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsControllerWorker;
+    @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsControllerMaterial;
+
+    @property (strong, nonatomic) UIPickerView *pickerViewMaterial, *pickerViewWorker;
     @property (strong, nonatomic) UIDatePicker *datePickerView;
     @property (strong, nonatomic) NSMutableArray *repeatOptions;
     @property (strong, nonatomic) NSDate *notifyDate;
@@ -30,8 +36,7 @@
     @property (weak, nonatomic) IBOutlet UISwitch *switcher;
 
     - (IBAction)switcherPressed:(id)sender;
-    // REVIEW Зачем?
-    // ANSWER Для событий в момент переключения switcher
+
 @end
 
 @implementation NotifyViewController
@@ -75,10 +80,16 @@
     // Show PickerView
     CGRect pickerFrame = CGRectZero;
 
-    self.pickerView = [[UIPickerView alloc] initWithFrame:pickerFrame];
+    self.pickerViewMaterial = [[UIPickerView alloc] initWithFrame:pickerFrame];
 
-    self.pickerView.delegate = self;
-    self.pickerView.dataSource = self;
+    self.pickerViewMaterial.delegate = self;
+    self.pickerViewMaterial.dataSource = self;
+    
+    // Show PickerView
+    self.pickerViewWorker = [[UIPickerView alloc] initWithFrame:pickerFrame];
+    
+    self.pickerViewWorker.delegate = self;
+    self.pickerViewWorker.dataSource = self;
     
     // Show DatePikerView
     CGRect datePickerFrame = CGRectZero;
@@ -88,6 +99,7 @@
     [self.datePickerView setMinimumDate:[NSDate date]];
     
     self.workerField.delegate = self;
+    self.materialField.delegate = self;
     
     self.nameField.placeholder = NSLocalizedString(@"NameField_PlaceHolder", nil);
     self.materialField.placeholder = self.materialFQ;
@@ -131,7 +143,7 @@
             self.dateField.text = nil;
             self.workerField.text = nil;
             self.dateField.placeholder = self.dateF;
-            self.workerField.placeholder = self.repeatF;
+            self.workerField.placeholder = self.workerF;
             
             NSUserDefaults *usrDefaults = [NSUserDefaults standardUserDefaults];
             [usrDefaults setInteger:0 forKey:@"Index"];
@@ -147,25 +159,13 @@
         self.dateField.text = nil;
         self.workerField.text = nil;
         self.dateField.placeholder = self.dateF;
-        self.workerField.placeholder = self.materialF;
+        self.workerField.placeholder = self.workerF;
         
         NSUserDefaults *usrDefaults = [NSUserDefaults standardUserDefaults];
         [usrDefaults setInteger:0 forKey:@"Index"];
     }
     self.switcher.on = indicator;
     self.materialField.enabled = indicator;
-    // REVIEW Сократить портянку в 2 раза. Например, если self.switcher.on
-    // REVIEW зависит от self.edit и self.notify, то конечное значение BOOL
-    // REVIEW достоточно получить ровно 1 раз, после чего его присвоить по
-    // REVIEW одному разу каждому виджету (switcher, dateField и т.д.).
-    // ANSWER Исправил.
-    // REVIEW Гораздо лучше сразу в AppDelegate присвоить
-    // REVIEW NSManagedObjectContext этому классу. Какой смысл
-    // REVIEW при каждом действии с базой выполнять одно и то же?
-    // ANSWER Готово.
-
-    // REVIEW Делать лишь один раз.
-    // ANSWER Готово.
 }
 
 - (IBAction)switcherPressed:(id)sender
@@ -243,7 +243,13 @@
         // REVIEW Поменять на сравнение с внутренней переменной, никак
         // REVIEW не связанной со строкой отображения.
         // ANSWER Исправил. Прослеживается связь, но, надеюсь, так можно.
-        self.workerField.inputView = self.pickerView;
+        self.pickerViewMaterial.tag = 0;
+        self.workerField.inputView = self.pickerViewWorker;
+    }
+    else if (textField == self.materialField)
+    {
+        self.pickerViewMaterial.tag = 1;
+        self.materialField.inputView = self.pickerViewMaterial;
     }
     else if (textField == self.dateField)
     {
@@ -278,20 +284,54 @@
 // returns the # of rows in each component..
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
 {
-    return self.repeatOptions.count;
-    // REVIEW Почему в NotifyTVC используется self.notifications.count (свойство)
-    // REVIEW а тут [pickerArray count] (метод)?
-    // ANSWER Исправил метод на свойство.
+    NSInteger countPicker = 0;
+    if (self.pickerViewMaterial.tag == 1)
+    {
+        countPicker = [[[self fetcherResultsControllerForMaterial] fetchedObjects] count];
+    }
+    else if (self.pickerViewMaterial.tag == 0)
+    {
+        countPicker = [[[self fetcherResultsControllerForWorker] fetchedObjects] count];
+    }
+    return countPicker;
 }
 
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
-    return [self.repeatOptions objectAtIndex:row];
+    NSManagedObject *Fetch = nil;
+    NSString *nameFetch = nil;
+    
+    if (self.pickerViewMaterial.tag == 1)
+    {
+        Fetch = [[[self fetcherResultsControllerForMaterial] fetchedObjects] objectAtIndex:row];
+    nameFetch = (NSString *)[Fetch valueForKey:@"nameMaterial"];
+    }
+    else if (self.pickerViewMaterial.tag == 0)
+    {
+        Fetch = [[[self fetcherResultsControllerForWorker] fetchedObjects] objectAtIndex:row];
+    nameFetch = (NSString *)[Fetch valueForKey:@"nameWorker"];
+    }
+    
+    return nameFetch;
 }
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
-    self.workerField.text = [self.repeatOptions objectAtIndex:row];
+    NSManagedObject *Fetch;
+    NSString *nameFetch;
+    
+    if (self.pickerViewMaterial.tag == 1)
+    {
+        Fetch = [[[self fetcherResultsControllerForMaterial] fetchedObjects] objectAtIndex:row];
+        nameFetch = (NSString *)[Fetch valueForKey:@"nameMaterial"];
+        self.materialField.text = nameFetch;
+    }
+    else if (self.pickerViewMaterial.tag == 0)
+    {
+        Fetch = [[[self fetcherResultsControllerForWorker] fetchedObjects] objectAtIndex:row];
+        nameFetch = (NSString *)[Fetch valueForKey:@"nameWorker"];
+        self.workerField.text = nameFetch;
+    }
 }
 
 // Add/Edit notification
@@ -324,6 +364,7 @@
                 
                 else
                     [self.notify setValue:self.workerField.text forKey:@"worker"];
+                    [self.notify setValue:self.materialField.text forKey:@"material"];
             }
             // Add new notification
             else
@@ -341,6 +382,7 @@
                 
                 else
                     notifyAdd.worker = self.workerField.text;
+                    notifyAdd.material = self.materialField.text;
             }
             
             NSError *error = nil;
@@ -413,6 +455,52 @@
     [self dismissViewControllerAnimated:YES completion:nil];
     // REVIEW Зачем?
     // ANSWER Метод ухода со страницы: закрытие клавиатуры/даты/режима повторений и NotifyViewController
+}
+
+- (NSFetchedResultsController *)fetcherResultsControllerForWorker
+{
+    if (self.fetchedResultsControllerWorker != nil) {
+        return self.fetchedResultsControllerWorker;
+    }
+    
+    NSEntityDescription *workerBase = [NSEntityDescription entityForName:@"WorkerData" inManagedObjectContext:self.appD.managedOC];
+    NSSortDescriptor *sortWorker = [NSSortDescriptor sortDescriptorWithKey:@"nameWorker" ascending:YES];
+    NSFetchRequest *requestWorker = [[NSFetchRequest alloc] init];
+    [requestWorker setEntity:workerBase];
+    [requestWorker setSortDescriptors:[NSArray arrayWithObject:sortWorker]];
+    self.fetchedResultsControllerWorker = [[NSFetchedResultsController alloc] initWithFetchRequest:requestWorker managedObjectContext:self.appD.managedOC sectionNameKeyPath:nil cacheName:nil];
+    
+    NSError *error = nil;
+    if (![self.fetchedResultsControllerWorker performFetch:&error])
+    {
+    [self.com showToast:(@"fetch error: %@", error) view:self];
+    abort();
+    }
+    
+    return self.fetchedResultsControllerWorker;
+}
+
+- (NSFetchedResultsController *)fetcherResultsControllerForMaterial
+{
+    if (self.fetchedResultsControllerMaterial != nil) {
+        return self.fetchedResultsControllerMaterial;
+    }
+    
+    NSEntityDescription *materialBase = [NSEntityDescription entityForName:@"MaterialData" inManagedObjectContext:self.appD.managedOC];
+    NSSortDescriptor *sortMaterial = [NSSortDescriptor sortDescriptorWithKey:@"nameMaterial" ascending:YES];
+    NSFetchRequest *requestMaterial = [[NSFetchRequest alloc] init];
+    [requestMaterial setEntity:materialBase];
+    [requestMaterial setSortDescriptors:[NSArray arrayWithObject:sortMaterial]];
+    self.fetchedResultsControllerMaterial = [[NSFetchedResultsController alloc] initWithFetchRequest:requestMaterial managedObjectContext:self.appD.managedOC sectionNameKeyPath:nil cacheName:nil];
+    
+    NSError *error = nil;
+    if (![self.fetchedResultsControllerMaterial performFetch:&error])
+    {
+        [self.com showToast:(@"fetch error: %@", error) view:self];
+        abort();
+    }
+    
+    return self.fetchedResultsControllerMaterial;
 }
 
 @end

@@ -45,7 +45,9 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="dateRemind" destination="B9F-n4-dYf" id="2os-xJ-2PM"/>
+                <outlet property="materialRemind" destination="Ox1-ub-uv6" id="w8b-w5-3Mg"/>
                 <outlet property="nameRemind" destination="qyF-yB-Ywt" id="5Rw-PQ-cPR"/>
+                <outlet property="workerRemind" destination="02z-ir-d1b" id="P7g-f7-pl5"/>
             </connections>
             <point key="canvasLocation" x="40" y="241.5"/>
         </tableViewCell>

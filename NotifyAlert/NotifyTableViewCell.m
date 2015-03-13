@@ -12,6 +12,8 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *nameRemind;
 @property (weak, nonatomic) IBOutlet UILabel *dateRemind;
+@property (weak, nonatomic) IBOutlet UILabel *workerRemind;
+@property (weak, nonatomic) IBOutlet UILabel *materialRemind;
 
 @end
 
@@ -25,13 +27,11 @@
     // DateFormat
     NSDateFormatter *format = [[NSDateFormatter alloc] init];
     [format setDateFormat:@"HH:mm / dd.MM.yy"];
-    
     NSString *string = [format stringFromDate:[notification valueForKey:@"date"]];
-    // REVIEW Использовать timeRemind, ведь это та же переменная.
-    // ANSWER Убрал timeRemind, всвязи с ненадобностью.
     [self.dateRemind setText:string];
     
-    NSString *repeat = [notification valueForKey:@"worker"];
+    [self.workerRemind setText:[notification valueForKey:@"worker"]];
+    [self.materialRemind setText:[notification valueForKey:@"material"]];
 }
 
 - (void)awakeFromNib {

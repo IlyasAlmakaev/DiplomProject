@@ -9,12 +9,8 @@
 #import "Common.h"
 #import "NotifyTableViewController.h"
 #import "NotifyTableViewCell.h"
-// REVIEW Зачем?
-// ANSWER Убрал
 #import "NotifyData.h"
 #import "AppDelegate.h"
-// REVIEW Зачем?
-// ANSWER Для связи с NSManagedObject, функцией удаления.
 
 
 @interface NotifyTableViewController ()
