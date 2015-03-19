@@ -234,8 +234,6 @@
 
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
 {
-    // REVIEW В одних случаях { на отдельной строке, в других на той же. Необходимо
-    // REVIEW выбрать ОДИН вариант и придерживаться его. Должно быть постоянство.
     UIApplicationState state = [application applicationState];
     
     if (state == UIApplicationStateActive)
@@ -244,33 +242,17 @@
                                                         message:notification.alertBody
                                                        delegate:self
                                               cancelButtonTitle:nil
-                              // REVIEW Почему cancelButtonTitle: не на отдельной строке?
                                               otherButtonTitles:nil];
         [alert performSelector:@selector(dismissWithClickedButtonIndex:animated:)
                     withObject:nil
                     afterDelay:2.0];
-        // REVIEW Это для того, чтобы заменить Toast?
-        // REVIEW Если так, то нужно использовать Toast.
-        // REVIEW Если нет, то надо объяснить.
-        // ANSWER Не получается заменить на Toast, т.к. в AppDelegate используются системные уведомления.
         [alert show];
     }
-    // REVIEW Зачем?
-    // ANSWER Убрал. Но в начальной версии приложения это было
-    // ANSWER нужно для обновления данных в TableView,
-    // ANSWER которые создавались из localNotification, а теперь создаются из CoreData
-    
-    // Clear icon when show notification in open application
-    // REVIEW В чём смысл этого комментария? Ведь это ясно из вызова.
-    // REVIEW Гораздо лучше объяснить, зачем это делается.
-    // ANSWER Объяснил
 }
 
     // Add local notification
 - (void)dateField:(NSDate *)dateNotify nameField:(NSString *)nameNotify repeatField:(NSString *)repeatNotify
 {
-    NotifyViewController *notifyViewC = [[NotifyViewController alloc] init];
-    
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0f)
     {
         UIUserNotificationType types = UIUserNotificationTypeBadge | UIUserNotificationTypeSound | UIUserNotificationTypeAlert;

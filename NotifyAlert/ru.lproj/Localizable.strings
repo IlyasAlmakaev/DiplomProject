@@ -24,7 +24,7 @@
 "AppDelegate_Notification" = "Напоминание:";
 "TabBar_Work" = "Дела";
 "TabBar_Material" = "Материалы";
-"TabBar_Worker" = "Рабочие";
+"TabBar_Worker" = "Исполнители";
 
 // MaterialViewController
 "Material_Title" = "Материалы";

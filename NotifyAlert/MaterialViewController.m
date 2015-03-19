@@ -14,6 +14,8 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *nameMaterialField;
 @property (weak, nonatomic) IBOutlet UITextField *countMaterialField;
+@property (weak, nonatomic) IBOutlet UIButton *getMaterial;
+- (IBAction)getInfoFromSite:(id)sender;
 
 @property (strong, nonatomic) AppDelegate *appD;
 @property (strong, nonatomic) Common *com;
@@ -122,4 +124,15 @@
 }
 */
 
+- (IBAction)getInfoFromSite:(id)sender
+{
+    NSURL *url = [NSURL URLWithString:@""];
+    NSString *name = [NSString stringWithContentsOfURL:url encoding:NSStringEncodingConversionAllowLossy error:nil];
+    
+    MaterialData *materialAdd = [NSEntityDescription insertNewObjectForEntityForName:@"MaterialData"
+                                                              inManagedObjectContext:self.appD.managedOCMaterial];
+    
+    materialAdd.nameMaterial = name;
+    materialAdd.countMaterial = self.countMaterialField.text;
+}
 @end
