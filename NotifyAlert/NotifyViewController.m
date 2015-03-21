@@ -369,10 +369,10 @@
             }
             
             NSError *error = nil;
-            
+            NSString *text = [NSString stringWithFormat:@"%@: %@ %@", ErrorString, error, [error localizedDescription]];
             if (![self.appD.managedOC save:&error])
             {
-                [self.com showToast:(@"%@: %@ %@", ErrorString, error, [error localizedDescription]) view:self];
+                [self.com showToast:text view:self];
                 return;
             }
         }
@@ -395,9 +395,10 @@
                 [self.notify setValue:self.notifyDate forKey:@"date"];
                 
                 NSError *error = nil;
+                NSString *text = [NSString stringWithFormat:@"%@: %@ %@", ErrorString, error, [error localizedDescription]];
                 if (![self.appD.managedOC save:&error])
                 {
-                    [self.com showToast:(@"%@: %@ %@", ErrorString, error, [error localizedDescription]) view:self];
+                    [self.com showToast:text view:self];
                     return;
                 }
             }
@@ -411,9 +412,11 @@
                 [notifyAdd setValue:self.notifyDate forKey:@"date"];
                 
                 NSError *error = nil;
+                NSString *text = [NSString stringWithFormat:@"%@: %@ %@", ErrorString, error, [error localizedDescription]];
+                
                 if (![self.appD.managedOC save:&error])
                 {
-                    [self.com showToast:(@"%@: %@ %@", ErrorString, error, [error localizedDescription]) view:self];
+                    [self.com showToast:text view:self];
                     return;
                 }
             }
@@ -451,9 +454,11 @@
     self.fetchedResultsControllerWorker = [[NSFetchedResultsController alloc] initWithFetchRequest:requestWorker managedObjectContext:self.appD.managedOC sectionNameKeyPath:nil cacheName:nil];
     
     NSError *error = nil;
+    NSString *text = [NSString stringWithFormat:@"fetch error: %@", error];
+    
     if (![self.fetchedResultsControllerWorker performFetch:&error])
     {
-    [self.com showToast:(@"fetch error: %@", error) view:self];
+    [self.com showToast:text view:self];
     abort();
     }
     
@@ -475,9 +480,11 @@
     self.fetchedResultsControllerMaterial = [[NSFetchedResultsController alloc] initWithFetchRequest:requestMaterial managedObjectContext:self.appD.managedOC sectionNameKeyPath:nil cacheName:nil];
     
     NSError *error = nil;
+    NSString *text = [NSString stringWithFormat:@"fetch error: %@", error];
+    
     if (![self.fetchedResultsControllerMaterial performFetch:&error])
     {
-        [self.com showToast:(@"fetch error: %@", error) view:self];
+        [self.com showToast:text view:self];
         abort();
     }
     

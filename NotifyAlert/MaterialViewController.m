@@ -9,6 +9,9 @@
 #import "MaterialViewController.h"
 #import "MaterialData.h"
 #import "Common.h"
+#import "AFNetworking.h"
+
+static NSString *const BaseURLString = @"http://diplomproject.esy.es/info.json";
 
 @interface MaterialViewController ()
 
@@ -96,9 +99,10 @@
             }
             
             NSError *error = nil;
-            
+            NSString *text = [NSString stringWithFormat:@"%@: %@ %@", ErrorString, error, [error localizedDescription]];
+        
             if (![self.appD.managedOCMaterial save:&error])
-                [self.com showToast:(@"%@: %@ %@", ErrorString, error, [error localizedDescription]) view:self];
+                [self.com showToast:text view:self];
         
         // Dismiss the view controller
         [self performSelector:@selector(back) withObject:nil];
@@ -126,13 +130,55 @@
 
 - (IBAction)getInfoFromSite:(id)sender
 {
-    NSURL *url = [NSURL URLWithString:@""];
-    NSString *name = [NSString stringWithContentsOfURL:url encoding:NSStringEncodingConversionAllowLossy error:nil];
+    NSString *string = BaseURLString;
+    NSURL *url = [NSURL URLWithString:string];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
     
-    MaterialData *materialAdd = [NSEntityDescription insertNewObjectForEntityForName:@"MaterialData"
-                                                              inManagedObjectContext:self.appD.managedOCMaterial];
-    
-    materialAdd.nameMaterial = name;
-    materialAdd.countMaterial = self.countMaterialField.text;
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    operation.responseSerializer = [AFJSONResponseSerializer serializer];
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"Response: %@", [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding]);
+        NSDictionary *dic = (NSDictionary *)responseObject;
+        
+        NSArray *materials = [dic objectForKey:@"material_info"];
+        NSString *m = [materials objectAtIndex:0];
+        NSLog(@"%@", m);
+        int count = 0;
+        
+        MaterialData *materialAdd = [NSEntityDescription insertNewObjectForEntityForName:@"MaterialData"
+                                                                  inManagedObjectContext:self.appD.managedOCMaterial];
+        
+        for(NSDictionary *dict in [dic objectForKey:@"material_info"])
+        {
+            if (count==2)
+            {
+                NSString *nname = [dict valueForKey:@"materialName"];
+                NSLog(@"%@", nname);
+            }
+            count++;
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"not up");
+    }];
+    [operation start];
+/*    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSDictionary *dic = (NSDictionary *)responseObject;
+        
+        NSArray *name = [dic objectForKey:@"material_info"];
+        NSArray *count = [dic objectForKey:@"materialCount"];
+        
+        MaterialData *materialAdd = [NSEntityDescription insertNewObjectForEntityForName:@"MaterialData"
+                                                                  inManagedObjectContext:self.appD.managedOCMaterial];
+        
+        for(int i=0; i==name.count; i++)
+        {
+            NSLog(@"%@", [name objectAtIndex:i]);
+            materialAdd.nameMaterial = [name objectAtIndex:i];
+            materialAdd.countMaterial = [count objectAtIndex:i];
+        }
+         NSLog(@"update");
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"update");
+    }];*/
 }
 @end

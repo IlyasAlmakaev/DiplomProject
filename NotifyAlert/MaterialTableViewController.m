@@ -95,12 +95,13 @@
         
         NSString *notDelete = NSLocalizedString(@"TableView_Error", nil);
         NSError *error = nil;
+        NSString *text = [NSString stringWithFormat:@"%@ %@ %@", notDelete, error, [error localizedDescription]];
         
         [self.materials removeObjectAtIndex:indexPath.row];
         
         if (![self.appD.managedOCTableMaterial save:&error])
         {
-            [self.com showToast:(@"%@ %@ %@", notDelete, error, [error localizedDescription]) view:self];
+            [self.com showToast:text view:self];
             return;
         }
         

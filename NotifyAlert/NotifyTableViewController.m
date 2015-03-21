@@ -142,10 +142,10 @@
         
         NSString *notDelete = NSLocalizedString(@"TableView_Error", nil);
         NSError *error = nil;
-        
+        NSString *text = [NSString stringWithFormat:@"%@ %@ %@", notDelete, error, [error localizedDescription]];
         if (![self.appD.managedOCTable save:&error])
         {
-            [self.com showToast:(@"%@ %@ %@", notDelete, error, [error localizedDescription]) view:self];
+            [self.com showToast:text view:self];
             // REVIEW Выводить с помощью Toast ошибку удаления.
             // REVIEW Также не ясно, что если удалится уведомление,
             // REVIEW но не удалится запись в базе?
@@ -157,7 +157,7 @@
         
         if (![self.appD.managedOCTable save:&error])
         {
-            [self.com showToast:(@"%@ %@ %@", notDelete, error, [error localizedDescription]) view:self];
+            [self.com showToast:text view:self];
             return;
         }
         

@@ -94,9 +94,10 @@
         }
         
         NSError *error = nil;
+        NSString *text = [NSString stringWithFormat:@"%@: %@ %@", ErrorString, error, [error localizedDescription]];
         
         if (![self.appD.managedOCWorker save:&error])
-            [self.com showToast:(@"%@: %@ %@", ErrorString, error, [error localizedDescription]) view:self];
+            [self.com showToast:text view:self];
         
         // Dismiss the view controller
         [self performSelector:@selector(back) withObject:nil];
