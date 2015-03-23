@@ -10,8 +10,9 @@
 #import "MaterialData.h"
 #import "Common.h"
 #import "AFNetworking.h"
+#import "XMLReader.h"
 
-static NSString *const BaseURLString = @"http://diplomproject.esy.es/info.json";
+static NSString *const BaseURLString = @"http://diplomproject.esy.es/materials.xml";
 
 @interface MaterialViewController ()
 
@@ -22,6 +23,11 @@ static NSString *const BaseURLString = @"http://diplomproject.esy.es/info.json";
 
 @property (strong, nonatomic) AppDelegate *appD;
 @property (strong, nonatomic) Common *com;
+
+@property (strong, nonatomic) NSMutableDictionary *xmlMaterial;
+@property (strong, nonatomic) NSMutableDictionary *currentDictionary;
+@property (strong, nonatomic) NSString *elementName;
+@property (strong, nonatomic) NSMutableString *outstring;
 
 @end
 
@@ -118,67 +124,27 @@ static NSString *const BaseURLString = @"http://diplomproject.esy.es/info.json";
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
 - (IBAction)getInfoFromSite:(id)sender
 {
     NSString *string = BaseURLString;
     NSURL *url = [NSURL URLWithString:string];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    NSURLResponse *response = nil;
+    NSError *requestError = nil;
     
-    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-    operation.responseSerializer = [AFJSONResponseSerializer serializer];
-    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"Response: %@", [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding]);
-        NSDictionary *dic = (NSDictionary *)responseObject;
-        
-        NSArray *materials = [dic objectForKey:@"material_info"];
-        NSString *m = [materials objectAtIndex:0];
-        NSLog(@"%@", m);
-        int count = 0;
-        
+    NSData *responseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&requestError];
+    
+    NSError *error = nil;
+    
+    NSDictionary *dict = [XMLReader dictionaryForXMLData:responseData error:&error];
+    
+    for(int i=0; i<[[[dict valueForKey:@"materials"] valueForKey:@"material"] count]; i++)
+    {
         MaterialData *materialAdd = [NSEntityDescription insertNewObjectForEntityForName:@"MaterialData"
                                                                   inManagedObjectContext:self.appD.managedOCMaterial];
-        
-        for(NSDictionary *dict in [dic objectForKey:@"material_info"])
-        {
-            if (count==2)
-            {
-                NSString *nname = [dict valueForKey:@"materialName"];
-                NSLog(@"%@", nname);
-            }
-            count++;
-        }
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"not up");
-    }];
-    [operation start];
-/*    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSDictionary *dic = (NSDictionary *)responseObject;
-        
-        NSArray *name = [dic objectForKey:@"material_info"];
-        NSArray *count = [dic objectForKey:@"materialCount"];
-        
-        MaterialData *materialAdd = [NSEntityDescription insertNewObjectForEntityForName:@"MaterialData"
-                                                                  inManagedObjectContext:self.appD.managedOCMaterial];
-        
-        for(int i=0; i==name.count; i++)
-        {
-            NSLog(@"%@", [name objectAtIndex:i]);
-            materialAdd.nameMaterial = [name objectAtIndex:i];
-            materialAdd.countMaterial = [count objectAtIndex:i];
-        }
-         NSLog(@"update");
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"update");
-    }];*/
+
+        materialAdd.nameMaterial = [[[[[dict valueForKey:@"materials"] valueForKey:@"material"]objectAtIndex:i] objectForKey:@"name"] objectForKey:@"text"];
+        materialAdd.countMaterial = [[[[[dict valueForKey:@"materials"] valueForKey:@"material"]objectAtIndex:i] objectForKey:@"count"] objectForKey:@"text"];
+    }
 }
 @end

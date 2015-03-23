@@ -13,7 +13,6 @@
 #import "DisableTextFieldEdit.h"
 #import "Common.h"
 
-
 @interface NotifyViewController ()
 <UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource>
 

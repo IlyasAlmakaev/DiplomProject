@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		11291BED1ABF76A30071D36F /* XMLReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 11291BEC1ABF76A30071D36F /* XMLReader.m */; };
 		11A2C36A1A7AFF7B00061625 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 11A2C3691A7AFF7B00061625 /* main.m */; };
 		11A2C36D1A7AFF7B00061625 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 11A2C36C1A7AFF7B00061625 /* AppDelegate.m */; };
 		11A2C3701A7AFF7B00061625 /* NotifyAlert.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 11A2C36E1A7AFF7B00061625 /* NotifyAlert.xcdatamodeld */; };
@@ -50,6 +51,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		11291BEB1ABF76A30071D36F /* XMLReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLReader.h; sourceTree = "<group>"; };
+		11291BEC1ABF76A30071D36F /* XMLReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLReader.m; sourceTree = "<group>"; };
 		11A2C3641A7AFF7B00061625 /* NotifyAlert.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NotifyAlert.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		11A2C3681A7AFF7B00061625 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		11A2C3691A7AFF7B00061625 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -189,6 +192,8 @@
 				11CCEDC71AAF96910023A95F /* MaterialData.m */,
 				11DDEA121AB1D368003F291A /* WorkerData.h */,
 				11DDEA131AB1D368003F291A /* WorkerData.m */,
+				11291BEB1ABF76A30071D36F /* XMLReader.h */,
+				11291BEC1ABF76A30071D36F /* XMLReader.m */,
 			);
 			path = NotifyAlert;
 			sourceTree = "<group>";
@@ -397,6 +402,7 @@
 				11CE508E1AADAD1800647AC3 /* MaterialTableViewController.m in Sources */,
 				11C89D961AADDFC900C258F3 /* WorkerViewController.m in Sources */,
 				11CCEDC81AAF96910023A95F /* MaterialData.m in Sources */,
+				11291BED1ABF76A30071D36F /* XMLReader.m in Sources */,
 				11A2C3701A7AFF7B00061625 /* NotifyAlert.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

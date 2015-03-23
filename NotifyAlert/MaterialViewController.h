@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h"
 
-@interface MaterialViewController : UIViewController
+@interface MaterialViewController : UIViewController<NSXMLParserDelegate>
 
 @property (strong) NSManagedObject *material;
 @property (nonatomic) BOOL editMaterial;
