@@ -9,10 +9,16 @@
 #import "WorkerViewController.h"
 #import "WorkerData.h"
 #import "Common.h"
+#import "XMLReader.h"
+
+static NSString *const BaseURLString = @"http://diplomproject.esy.es/workers.xml";
 
 @interface WorkerViewController ()
+
 @property (weak, nonatomic) IBOutlet UITextField *nameWorkerField;
 @property (weak, nonatomic) IBOutlet UITextField *statusWorkerField;
+@property (weak, nonatomic) IBOutlet UIButton *getWorker;
+- (IBAction)getWorkerInfoFromSite:(id)sender;
 
 @property (strong, nonatomic) AppDelegate *appD;
 @property (strong, nonatomic) Common *com;
@@ -113,14 +119,27 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (IBAction)getWorkerInfoFromSite:(id)sender
+{
+    NSString *string = BaseURLString;
+    NSURL *url = [NSURL URLWithString:string];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    NSURLResponse *response = nil;
+    NSError *requestError = nil;
+    
+    NSData *responseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&requestError];
+    
+    NSError *error = nil;
+    
+    NSDictionary *dict = [XMLReader dictionaryForXMLData:responseData error:&error];
+    
+    for(int i=0; i<[[[dict valueForKey:@"workers"] valueForKey:@"worker"] count]; i++)
+    {
+        WorkerData *workerAdd = [NSEntityDescription insertNewObjectForEntityForName:@"WorkerData"
+                                                                  inManagedObjectContext:self.appD.managedOCWorker];
+        
+        workerAdd.nameWorker = [[[[[dict valueForKey:@"workers"] valueForKey:@"worker"]objectAtIndex:i] objectForKey:@"name"] objectForKey:@"text"];
+        workerAdd.statusWorker = [[[[[dict valueForKey:@"workers"] valueForKey:@"worker"]objectAtIndex:i] objectForKey:@"status"] objectForKey:@"text"];
+    }
 }
-*/
-
 @end

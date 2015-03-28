@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WorkerViewController">
             <connections>
+                <outlet property="getWorker" destination="H1E-HE-ZST" id="Dgr-Bf-fiw"/>
                 <outlet property="nameWorkerField" destination="S22-hc-Us7" id="FCw-ce-xvM"/>
                 <outlet property="statusWorkerField" destination="6Qu-EF-TSi" id="1OY-N8-ZOY"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -29,6 +30,16 @@
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="H1E-HE-ZST">
+                    <rect key="frame" x="95" y="84" width="131" height="30"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                    <state key="normal" title="Загрузка из сайта">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="getWorkerInfoFromSite:" destination="-1" eventType="touchUpInside" id="3GN-Ev-NVs"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <point key="canvasLocation" x="213" y="296"/>

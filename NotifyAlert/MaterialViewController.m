@@ -9,7 +9,6 @@
 #import "MaterialViewController.h"
 #import "MaterialData.h"
 #import "Common.h"
-#import "AFNetworking.h"
 #import "XMLReader.h"
 
 static NSString *const BaseURLString = @"http://diplomproject.esy.es/materials.xml";
