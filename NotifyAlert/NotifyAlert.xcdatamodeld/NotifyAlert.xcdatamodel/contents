@@ -1,22 +1,24 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6254" systemVersion="14A389" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7549" systemVersion="14A389" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="MaterialData" representedClassName="MaterialData" syncable="YES">
-        <attribute name="countMaterial" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="countMaterial" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="nameMaterial" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="taskMaterial" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="NotifyData" inverseName="materialData" inverseEntity="NotifyData" syncable="YES"/>
     </entity>
     <entity name="NotifyData" representedClassName="NotifyData" syncable="YES">
         <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="descript" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="material" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="worker" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="materialData" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="MaterialData" inverseName="taskMaterial" inverseEntity="MaterialData" syncable="YES"/>
+        <relationship name="workerData" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="WorkerData" inverseName="taskWorker" inverseEntity="WorkerData" syncable="YES"/>
     </entity>
     <entity name="WorkerData" representedClassName="WorkerData" syncable="YES">
         <attribute name="nameWorker" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="statusWorker" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="taskWorker" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="NotifyData" inverseName="workerData" inverseEntity="NotifyData" syncable="YES"/>
     </entity>
     <elements>
-        <element name="MaterialData" positionX="-63" positionY="9" width="128" height="75"/>
-        <element name="NotifyData" positionX="-63" positionY="-18" width="128" height="105"/>
-        <element name="WorkerData" positionX="-63" positionY="9" width="128" height="75"/>
+        <element name="MaterialData" positionX="108" positionY="-18" width="128" height="90"/>
+        <element name="NotifyData" positionX="-56" positionY="-18" width="128" height="103"/>
+        <element name="WorkerData" positionX="106" positionY="74" width="128" height="90"/>
     </elements>
 </model>
